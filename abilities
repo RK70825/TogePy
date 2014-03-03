@@ -1,0 +1,658 @@
+(dp1
+S'flare boost'
+p2
+S'Special Attack is increased by 50% when burned.'
+p3
+sS'sand veil'
+p4
+S'Evasion increases by 25% in a sandstorm.'
+p5
+sS'zen mode'
+p6
+S'The wielder changes forme when below 50% of its max HP.'
+p7
+sS'scrappy'
+p8
+S'Can hit Ghost-types with Fighting- and Normal-type moves.'
+p9
+sS'marvel scale'
+p10
+S'Defense is increased by 50% when afflicted with status.'
+p11
+sS'huge power'
+p12
+S'Doubles Attack.'
+p13
+sS'dry skin'
+p14
+S'The wielder absorbs Water-type moves and has a weakness to Fire-type moves. Heals in rain and is damaged by sun.'
+p15
+sS'heavy metal'
+p16
+S"The wielder's weight is doubled."
+p17
+sS'klutz'
+p18
+S'The wielder both is unaffected by and will not utilize held items.'
+p19
+sS'heatproof'
+p20
+S'Reduces damage from Fire-type moves by 50%.'
+p21
+sS'clear body'
+p22
+S"The wielder's stats cannot be lowered."
+p23
+sS'wonder guard'
+p24
+S'Only super effective attacks harm the wielder.'
+p25
+sS'anticipation'
+p26
+S'<p>Alerts the wielder to certain dangerous moves.</p>'
+p27
+sS'lightningrod'
+p28
+S'When hit with an Electric-type move, Special Attack is boosted by one stage. All Electric-type attacks are drawn to this Pokemon.'
+p29
+sS'iron fist'
+p30
+S'Increases the power of punching moves by 20%.'
+p31
+sS'guts'
+p32
+S'Attack is increased by 50% when afflicted with status.'
+p33
+sS'poison heal'
+p34
+S'Heals 1/8 HP per turn when poisoned.'
+p35
+sS'rough skin'
+p36
+S'Deals 1/8 damage when the opponent makes contact.'
+p37
+sS'analytic'
+p38
+S'Raises the power of all moves by 30% if the wielder moves last.'
+p39
+sS'storm drain'
+p40
+S'When hit with a Water-type move, Special Attack is boosted by one stage. All Water-type attacks are drawn to this Pokemon.'
+p41
+sS'blaze'
+p42
+S'Boosts power of Fire-type moves 50% when at 1/3 HP or less.'
+p43
+sS'shell armor'
+p44
+S'Prevents critical hits.'
+p45
+sS'unburden'
+p46
+S'Speed increases when an item is used or lost.'
+p47
+sS'light metal'
+p48
+S"The wielder's weight is halved."
+p49
+sS'sniper'
+p50
+S'Critical hits do 3x damage instead of 2x.'
+p51
+sS'pure power'
+p52
+S'Doubles Attack stat.'
+p53
+sS'snow cloak'
+p54
+S'Evasion increases 25% in hail.'
+p55
+sS'rattled'
+p56
+S'Raises Speed one stage when hit by a Bug-, Dark-, or Ghost-type move.'
+p57
+sS'insomnia'
+p58
+S'Prevents sleep.'
+p59
+sS'inner focus'
+p60
+S'Prevents flinching.'
+p61
+sS'moxie'
+p62
+S'Boosts Attack by one stage if the wielder knocks out another Pokemon.'
+p63
+sS'flash fire'
+p64
+S'Grants immunity to Fire-type moves and increases the power of Fire-type moves by 50% when hit by a Fire-type move.'
+p65
+sS'leaf guard'
+p66
+S'Prevents status effects in sun.'
+p67
+sS'shield dust'
+p68
+S"Secondary effects won't occur."
+p69
+sS'moody'
+p70
+S'A random stat is lowered by 1 stage and another is boosted by 2 stages every turn.'
+p71
+sS'own tempo'
+p72
+S'Prevents confusion.'
+p73
+sS'gluttony'
+p74
+S'Consumes pinch Berries at 50% HP or less.'
+p75
+sS'friend guard'
+p76
+S'Reduces damage done to a teammate by 25%.'
+p77
+sS'arena trap'
+p78
+S'<p>Prevents grounded Pokemon from switching. Increases encounter rate.</p>'
+p79
+sS'serene grace'
+p80
+S"This Pokemon's secondary effect chances are doubled."
+p81
+sS'synchronize'
+p82
+S'When afflicted with status, the enemy is afflicted also. Can pass nature to wild Pokemon.'
+p83
+sS'skill link'
+p84
+S'Multi-hit moves will always hit the maximum number of times.'
+p85
+sS'reckless'
+p86
+S'Increases the power of recoil moves by 20%.'
+p87
+sS'multitype'
+p88
+S'Type changes depending on the held plate. Prevents item loss.'
+p89
+sS'sand rush'
+p90
+S'Speed doubles in sandstorm.'
+p91
+sS'quick feet'
+p92
+S'Speed is increased by 50% when afflicted with status.'
+p93
+sS'unaware'
+p94
+S'Ignores stat boosts and debuffs on other Pokemon other than Speed.'
+p95
+sS'wonder skin'
+p96
+S'Reduces the accuracy of a status move to 50%.'
+p97
+sS'rock head'
+p98
+S'Recoil moves deal no recoil damage.'
+p99
+sS'illuminate'
+p100
+S'Increases wild encounter rate (no effect in battles).'
+p101
+sS'natural cure'
+p102
+S'Cures status on switching out.'
+p103
+sS'imposter'
+p104
+S'The wielder transforms into the opponent when it switches in.'
+p105
+sS'static'
+p106
+S'30% chance to paralyze when struck by a contact move.'
+p107
+sS'sand force'
+p108
+S'Increases power of Ground-, Rock-, and Steel-type attacks by 30% in a sandstorm.'
+p109
+sS'download'
+p110
+S"The wielder gets a stat boost depending on its opponent's stats."
+p111
+sS'healer'
+p112
+S'30% chance to heal an adjacent teammate of a status condition every turn.'
+p113
+sS'levitate'
+p114
+S'The wielder is immune to Ground-type moves.'
+p115
+sS'truant'
+p116
+S'The wielder does nothing every other turn.'
+p117
+sS'drizzle'
+p118
+S'Summons permanent rain.'
+p119
+sS'sheer force'
+p120
+S'Increases power of moves with secondary effects by 30%, but removes the effects.'
+p121
+sS'suction cups'
+p122
+S'Cannot be forced to switch. Increases chance of encountering Pokemon while fishing.'
+p123
+sS'run away'
+p124
+S'Increases chances of successfully escaping a random battle.'
+p125
+sS'steadfast'
+p126
+S'Speed is boosted one stage when flinched.'
+p127
+sS'limber'
+p128
+S'Prevents paralysis.'
+p129
+sS'mummy'
+p130
+S"The opponent's ability becomes Mummy when it hits the wielder with a contact move."
+p131
+sS'bad dreams'
+p132
+S'Deals 1/8 damage to sleeping opponents per turn.'
+p133
+sS'forecast'
+p134
+S'Changes type according to weather.'
+p135
+sS'pickup'
+p136
+S'Adds a chance of finding an item after each in-game battle.'
+p137
+sS'speed boost'
+p138
+S'Speed increases at end of the turn.'
+p139
+sS'effect spore'
+p140
+S'30% chance to paralyze, poison, or sleep when struck by a contact move.'
+p141
+sS'swift swim'
+p142
+S'Speed doubles in rain.'
+p143
+sS'justified'
+p144
+S'Raises Attack one stage when hit by a Dark-type move.'
+p145
+sS'rain dish'
+p146
+S'Heals 1/16 maximum HP in rain.'
+p147
+sS'slow start'
+p148
+S'Attack and Speed are halved for 5 turns.'
+p149
+sS'keen eye'
+p150
+S"The wielder's accuracy cannot be lowered."
+p151
+sS'hustle'
+p152
+S'Physical moves do 50% more damage at the cost of 20% accuracy. Increases wild encounter rate with higher level Pokemon.'
+p153
+sS'poison point'
+p154
+S'30% chance to poison when struck by a contact move.'
+p155
+sS'torrent'
+p156
+S'Boosts power of Water-type moves by 50% when at 1/3 HP or less.'
+p157
+sS'pressure'
+p158
+S'Enemy attacks lose one extra PP. Increases wild encounter rate.'
+p159
+sS'cute charm'
+p160
+S'Can infatuate Pokemon of opposite gender when struck.'
+p161
+sS'telepathy'
+p162
+S"Does not take damage from allies' attacks."
+p163
+sS'aftermath'
+p164
+S'Deals 25% damage when KOed by contact damage.'
+p165
+sS'mold breaker'
+p166
+S'Abilities that hinder attacks are nullified.'
+p167
+sS'teravolt'
+p168
+S'Abilities that hinder attacks are nullified.'
+p169
+sS'sticky hold'
+p170
+S"The wielder's item cannot be removed. Increases chance of encountering Pokemon while fishing."
+p171
+sS'filter'
+p172
+S'Reduces damage from super effective hits by 1/4.'
+p173
+sS'plus'
+p174
+S"If allied with a Pokemon with Plus or Minus, the wielder's Special Attack increases by 50%."
+p175
+sS'flower gift'
+p176
+S'Raises stats of the wielder and its partner in sun.'
+p177
+sS'no guard'
+p178
+S'All attacks used by and used on the wielder will never miss.'
+p179
+sS'ice body'
+p180
+S'Heals 1/16 maximum HP in hail.'
+p181
+sS'regenerator'
+p182
+S'Wielder heals 1/3 of its maximum HP on switching out.'
+p183
+sS'shed skin'
+p184
+S'1/3 chance to heal status every turn.'
+p185
+sS'iron barbs'
+p186
+S'Deals 1/8% damage when the opponent makes contact.'
+p187
+sS'overcoat'
+p188
+S'Grants immunity to damage from weather effects.'
+p189
+sS'snow warning'
+p190
+S'Summons permanent hail.'
+p191
+sS'overgrow'
+p192
+S'Boosts power of Grass-type moves by 50% when at 1/3 HP or less.'
+p193
+sS'tangled feet'
+p194
+S'Evasion increases when confused.'
+p195
+sS'forewarn'
+p196
+S"Tells which of the opponent's moves has the highest Base Power."
+p197
+sS'chlorophyll'
+p198
+S'Speed doubles in sun.'
+p199
+sS'oblivious'
+p200
+S'Grants immunity to infatuation and Captivate.'
+p201
+sS'honey gather'
+p202
+S'Adds a chance of finding Honey after each in-game battle.'
+p203
+sS'stall'
+p204
+S'The wielder moves last.'
+p205
+sS'stench'
+p206
+S'Increases the chance that the opponent will flinch when the wielder attacks. Decreases wild encounter rate.'
+p207
+sS'magic bounce'
+p208
+S'Bounces back certain non-damaging moves.'
+p209
+sS'damp'
+p210
+S'Prevents the use of Selfdestruct or Explosion. Prevents Aftermath from doing damage.'
+p211
+sS'swarm'
+p212
+S'Boosts power of Bug-type moves by 50% when at 1/3 HP or less.'
+p213
+sS'frisk'
+p214
+S"Reveals the foe's item."
+p215
+sS'magma armor'
+p216
+S'Prevents freeze. Halves the number of steps required to hatch Eggs.'
+p217
+sS'water absorb'
+p218
+S'Heals 25% HP when hit by a Water-type attack.'
+p219
+sS'super luck'
+p220
+S'Critical hit rate is boosted by one stage.'
+p221
+sS'multiscale'
+p222
+S'Reduces damage by 50% if the wielder is at full health.'
+p223
+sS'early bird'
+p224
+S'Reduces sleep time.'
+p225
+sS'flame body'
+p226
+S'30% chance to burn when struck by a contact move. Halves the number of steps required to hatch Eggs.'
+p227
+sS'thick fat'
+p228
+S'Fire- and Ice-type damage is reduced by 50%.'
+p229
+sS'sap sipper'
+p230
+S'Grants immunity to Grass-type moves and boosts Attack by 1 stage when hit by a Grass-type move.'
+p231
+sS'white smoke'
+p232
+S"The wielder's stats cannot be lowered. Decreases wild encounter rate."
+p233
+sS'technician'
+p234
+S'Increases the Base Power of moves with 60 or less by 50%.'
+p235
+sS'harvest'
+p236
+S'After each turn, the wielder may receive the Berry it used at a 50% chance (100% if in sun).'
+p237
+sS'vital spirit'
+p238
+S'Prevents sleep. Increases wild encounters with higher level Pokemon.'
+p239
+sS'victory star'
+p240
+S'Increases the accuracy of the wielder and allies on its side of the field by 10%.'
+p241
+sS'turboblaze'
+p242
+S'Abilities that hinder attacks are nullified.'
+p243
+sS'intimidate'
+p244
+S"Lowers the foe's Attack one stage. Decreases wild encounter rate."
+p245
+sS'defeatist'
+p246
+S"Halves the wielder's Attack and Special Attack if its HP drops below 50%."
+p247
+sS'hyper cutter'
+p248
+S"The wielder's Attack cannot be lowered."
+p249
+sS'cloud nine'
+p250
+S'Blocks the effects of weather.'
+p251
+sS'contrary'
+p252
+S"The wielder's stat changes are reversed."
+p253
+sS'water veil'
+p254
+S'Prevents burn.'
+p255
+sS'liquid ooze'
+p256
+S'Leeching moves cause the enemy to lose HP instead.'
+p257
+sS'minus'
+p258
+S"If allied with a Pokemon with Plus or Minus, the wielder's Special Attack increases by 50%."
+p259
+sS'prankster'
+p260
+S'Moves that do not deal direct damage have their priority increased by one level.'
+p261
+sS'battle armor'
+p262
+S'Prevents critical hits.'
+p263
+sS'solid rock'
+p264
+S'Reduces damage from super effective hits by 25%.'
+p265
+sS'rivalry'
+p266
+S'Move power depends on gender of the opponent.'
+p267
+sS'unnerve'
+p268
+S'Prevents the foe from consuming its held Berry item.'
+p269
+sS'simple'
+p270
+S'Doubles all status boosts and drops.'
+p271
+sS'normalize'
+p272
+S'All moves used by the wielder are Normal-type.'
+p273
+sS'shadow tag'
+p274
+S'Prevents switching.'
+p275
+sS'defiant'
+p276
+S'Boosts Attack by two stages for every stat drop.'
+p277
+sS'magic guard'
+p278
+S'Prevents indirect damage.'
+p279
+sS'motor drive'
+p280
+S'Grants immunity to Electric-type moves and boosts Speed by 1 stage when hit by an Electric-type move.'
+p281
+sS'tinted lens'
+p282
+S'Doubles damage on resisted hits.'
+p283
+sS'hydration'
+p284
+S'Heals status effects in rain.'
+p285
+sS'poison touch'
+p286
+S'The wielder has a 30% chance to poison the opponent when it uses a contact move.'
+p287
+sS'illusion'
+p288
+S'The wielder appears as the last Pokemon in the party to the opponent.'
+p289
+sS'immunity'
+p290
+S'The wielder cannot be poisoned.'
+p291
+sS'trace'
+p292
+S"Copies foe's ability."
+p293
+sS'anger point'
+p294
+S'Raises Attack to +6 if struck by a critical hit.'
+p295
+sS'cursed body'
+p296
+S'The wielder has a 30% chance to disable any move that hits it.'
+p297
+sS'sand stream'
+p298
+S'Summons permanent sandstorm.'
+p299
+sS'drought'
+p300
+S'Summons permanent sun.'
+p301
+sS'toxic boost'
+p302
+S'Attack is increased by 50% when poisoned.'
+p303
+sS'magnet pull'
+p304
+S'Prevents Steel-type Pokemon from switching. Increases the chance of encountering a Steel-type Pokemon in the wild.'
+p305
+sS'adaptability'
+p306
+S"The wielder's STAB modifier becomes 2x."
+p307
+sS'solar power'
+p308
+S'HP decreases in the sun. Special Attack increases by 50%.'
+p309
+sS'infiltrator'
+p310
+S"The wielder bypasses the foe's Light Screen, Reflect, Mist, and Safeguard."
+p311
+sS'sturdy'
+p312
+S'If the wielder is at full HP, it will survive any attack. OHKO moves will fail.'
+p313
+sS'air lock'
+p314
+S'Blocks the effects of weather.'
+p315
+sS'pickpocket'
+p316
+S'The wielder immediately steals an item from an attacker using a contact move.'
+p317
+sS'big pecks'
+p318
+S"The wielder's Defense cannot be lowered."
+p319
+sS'color change'
+p320
+S"Foe's move changes the Pokemon's type."
+p321
+sS'soundproof'
+p322
+S'Unaffected by sound moves.'
+p323
+sS'volt absorb'
+p324
+S'Heals 25% HP when hit by an Electric-type attack.'
+p325
+sS'compoundeyes'
+p326
+S'Increases accuracy by 30%. Increases the chance of finding items on wild Pokemon.'
+p327
+sS'weak armor'
+p328
+S'Boosts Speed by 1 stage and lowers Defense by 1 stage when hit by a physical move.'
+p329
+s.
