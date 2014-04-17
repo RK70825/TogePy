@@ -45,7 +45,8 @@ def save_Poke(poke, saveName='', overwrite=False):
 def load_Poke(fname):
     fPath = os.path.join(pokePath, fname)
     with open(fPath, 'rb') as f:
-        poke = pickle.load(f)
+        s = f.read().replace('\r\n', '\n')
+        poke = pickle.loads(s)
     return poke
         
 def save_Team(team, saveName='', overwrite=False):
@@ -67,6 +68,7 @@ def save_Team(team, saveName='', overwrite=False):
         
 def load_Team(fname):
     fPath = os.path.join(teamPath, fname)
-    with open(fPath, 'rb') as f:
-        team = pickle.load(f)
+    with open(fPath, 'rU') as f:
+        s = f.read().replace('\r\n', '\n')
+        team = pickle.loads(s)
     return team
