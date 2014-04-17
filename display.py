@@ -3,6 +3,7 @@ import pkmn_test
 from pkmn_test import pokeStructs
 import numpy as np
 import save
+from copy import deepcopy
 
 screen = curses.initscr()
 screen.clear()
@@ -516,10 +517,148 @@ def battle_menu():
     lines = ['Single', 'Double', 'Triple', 'Rotation', 'Exit']
     selection = standard_menu(lines)
     if selection in range(4):
-        under_Construction()
+        battle_opts = dict()
+        battle_opts['# Poke'] = range(6, 0, -1)
+        battle_opts['Items'] = [True, False]
+        battle_opts['Tier'] = ['Uber', 'Overused', 'Borderline', 'Underused', 'Borderline 2', 'Rarelyused', 'Neverused', 'Little Cup', 'Limbo', 'Not Fully Evolved']
+        battle_opts['Level'] = ['As Is', 50, 100]
+        battle_opts['Players'] = ['Human vs. CPU', 'CPU vs. CPU', 'Human vs. Human']
+        battle_vals = user_options(battle_opts, 'Battle Options')
+        team = select_team()
+        battle_team = deepcopy(team)
+        for i in battle_team.pos_taken():
+            poke = battle_team.get_Member(i)
+            poke.setLevel(battle_vals['Level'])
+            battle_team.set_Member(i, poke)
+        members = select_poke(team, int(battle_vals['# Poke']))
+        temp_team = pokeStructs.Team(battle_team.Name)
+        temp_team.set_All([battle_team.get_Member(i+1) for i in members.keys() if members[i] == 1])
+        d_team(temp_team)
         battle_menu()
     else:
         menu()
+        
+def select_team():
+    screen.nodelay(0)
+    screen.clear()
+    selection = -1
+    option = 0
+    teams = save.get_Files('TEAM')
+    lines = ['Team', 'Member_1', 'Member_2', 'Member_3', 'Member_4', 'Member_5', 'Member_6', 'Confirm']
+    title = 'Team Selection'
+    #Create dictionaries needed to support selections
+    vals = dict(zip(range(len(lines)), [0]*len(lines)))
+    strvals = dict(zip(range(len(lines)), ['']*len(lines)))
+    maxval = dict(zip(range(len(lines)), [1]*len(lines)))
+    #Set max unique values for each option
+    maxval[0] = len(teams)
+    while selection < 0:
+        # Display Static Information
+        graphics = [0]*len(lines)
+        graphics[option] = curses.A_REVERSE
+        screen.clear()
+        screen.addstr(1, (dims[1]-len(title))/2, title, curses.A_BOLD)
+        for i, l in enumerate(lines):
+            screen.addstr(2*i+3, 1, l, graphics[i])
+        screen.border()
+        # Update string values for each option
+        strvals[0] = teams[vals[0]]
+        # Grab team
+        team = save.load_Team(strvals[0])
+        # Update string values with poke
+        for i in range(1, 7):
+            if team.pos_open(i):
+                strvals[i] = ''
+            else:
+                poke = team.get_Member(i)
+                strvals[i] = poke.Name
+        # Display Current Choices
+        for i in range(len(lines)-1):
+            screen.addstr(2*i+3, len(lines[i])+2, strvals[i])
+        # Flush to Screne
+        screen.refresh()
+        # Key Stuff
+        action = screen.getch()
+        if action == curses.KEY_UP:
+            option = (option - 1)%len(lines)
+        elif action == curses.KEY_DOWN:
+            option = (option + 1)%len(lines)
+        elif action == curses.KEY_LEFT:
+            vals[option] = (vals[option]-1)%maxval[option]
+        elif action == curses.KEY_RIGHT:
+            vals[option] = (vals[option]+1)%maxval[option]
+        elif action == ord('\n'):
+            if option == 0:
+                d_team(team)
+            elif option in range(1, 7):
+                d_poke(team.get_Member(option))
+            elif option == 7:
+                selection = option
+        elif action == ord('q'):
+            selection = option
+        elif action == ord('d'):
+            d_team(team)
+        screen.refresh()
+    screen.clear()
+    return team
+
+def select_poke(team, max_pkmn):
+    """Choose which poke from the team will be used in battle"""
+    screen.nodelay(0)
+    screen.clear()
+    selection = -1
+    option = 0
+    lines = [team.get_Member(i).Name for i in range(1, 7)] + ['Confirm']
+    title = 'Team Selection'
+    n_chosen = 0
+    #Create dictionaries needed to support selections
+    vals = dict(zip(range(len(lines)), [0]*len(lines)))
+    strvals = dict(zip(range(len(lines)), ['[ ]']*len(lines)))
+    maxval = dict(zip(range(len(lines)), [1]*len(lines)))
+    #Set max unique values for each option
+    maxval[0] = len(lines)
+    while selection < 0:
+        # Display Static Information
+        graphics = [0]*len(lines)
+        graphics[option] = curses.A_REVERSE
+        screen.clear()
+        screen.addstr(1, (dims[1]-len(title))/2, title)
+        for i, l in enumerate(lines):
+            screen.addstr(2*i+3, 5, l, graphics[i])
+        screen.border()
+        # Display Current Choices
+        for i in range(len(lines)-1):
+            screen.addstr(2*i+3, 1, strvals[i])
+        # Flush to Screne
+        screen.refresh()
+        # Key Stuff
+        action = screen.getch()
+        if action == curses.KEY_UP:
+            option = (option - 1)%len(lines)
+        elif action == curses.KEY_DOWN:
+            option = (option + 1)%len(lines)
+        elif action == ord('\n'):
+            if option in range(6):
+                d_poke(team.get_Member(option+1))
+            elif option == 6:
+                selection = option
+        elif action == ord(' '):
+            if option in range(6):
+                if strvals[option] == '[ ]' and n_chosen < max_pkmn:
+                    vals[option] = 1
+                    strvals[option] = '[X]'
+                    n_chosen += 1
+                elif strvals[option] == '[X]':
+                    vals[option] = 0
+                    strvals[option] = '[ ]'
+                    n_chosen -= 1
+        elif action == ord('q'):
+            selection = option
+        elif action == ord('d'):
+            d_team(team)
+        screen.refresh()
+    screen.clear()
+    return vals
     
 def under_Construction():
     temp = dict()
@@ -599,7 +738,7 @@ def popup_menu(lines):
     screen.refresh()
     return selection
 
-def user_options(d_settings):
+def user_options(d_settings, title='Select Options'):
     """
     Displays a screen where users can set values for multiple game settings. d_settings should be a dictionary where the keys correspond to the game values that are being set and the dictionary values are lists of the allowable options for each setting.
     """
@@ -608,7 +747,7 @@ def user_options(d_settings):
     screen.clear()
     selection = -1
     option = 0
-    lines = d_settings.keys() + ['Exit']
+    lines = d_settings.keys() + ['Confirm']
     #Create dictionaries needed to support selections
     vals = dict(zip(range(len(lines)), [0]*len(lines)))
     strvals = dict(zip(range(len(lines)), ['']*len(lines)))
@@ -620,14 +759,15 @@ def user_options(d_settings):
         graphics = [0]*len(lines)
         graphics[option] = curses.A_REVERSE
         screen.clear()
+        screen.addstr(1, (dims[1]-len(title))/2, title)
         for i, l in enumerate(lines):
-            screen.addstr(i+1, 1, l, graphics[i])        
+            screen.addstr(i+3, 1, l, graphics[i])
         screen.border()
         # Update string values for each option
         strvals = [str(d_settings[k][vals[i]]) for i, k in enumerate(lines[:-1])]
         # Display Current Choices
         for i in range(len(lines)-1):
-            screen.addstr(i+1, len(lines[i])+2, strvals[i])
+            screen.addstr(i+3, len(lines[i])+2, strvals[i])
         # Flush to Screne        
         screen.refresh()
         # Key Stuff

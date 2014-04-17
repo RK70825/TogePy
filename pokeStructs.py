@@ -51,7 +51,7 @@ class Pokemon(Pokemon_dex):
     def setLevel(self, level):
         if level == 'As Is':
             return
-        elif isinstance(level, int) and 1 <= level <= 100:
+        else:
             self.Level = float(level)
             self.calcStats()
     
