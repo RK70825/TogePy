@@ -398,7 +398,7 @@ def calcTypeEff(Types):
         d_TypeEff['Dark'] *= 2
     return d_TypeEff
 
-def createEVs(l_EVs = (0,0,0,0,0,0)):
+def createEVs(l_EVs = [0,0,0,0,0,0]):
     d_EVs = {}
     d_EVs['HP'] = float(l_EVs[0])
     d_EVs['Atk'] = float(l_EVs[1])
@@ -408,7 +408,7 @@ def createEVs(l_EVs = (0,0,0,0,0,0)):
     d_EVs['Spe'] = float(l_EVs[5])
     return d_EVs
 
-def createIVs(l_IVs = (15,15,15,15,15,15)):
+def createIVs(l_IVs = [15,15,15,15,15,15]):
     d_IVs = {}
     d_IVs['HP'] = float(l_IVs[0])
     d_IVs['Atk'] = float(l_IVs[1])

@@ -42,6 +42,12 @@ def save_Poke(poke, saveName='', overwrite=False):
     with open(fPath, 'wb') as f:
         pickle.dump(poke, f)
         
+def load_Poke(fname):
+    fPath = os.path.join(pokePath, fname)
+    with open(fPath, 'rb') as f:
+        poke = pickle.load(f)
+    return poke
+        
 def save_Team(team, saveName='', overwrite=False):
     if not isinstance(team, pokeStructs.Team):
         return
@@ -58,3 +64,9 @@ def save_Team(team, saveName='', overwrite=False):
             return
     with open(fPath, 'wb') as f:
         pickle.dump(team, f)
+        
+def load_Team(fname):
+    fPath = os.path.join(teamPath, fname)
+    with open(fPath, 'rb') as f:
+        team = pickle.load(f)
+    return team

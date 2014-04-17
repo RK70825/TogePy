@@ -1,6 +1,8 @@
 import curses
 import pkmn_test
+from pkmn_test import pokeStructs
 import numpy as np
+import save
 
 screen = curses.initscr()
 screen.clear()
@@ -74,7 +76,9 @@ def menu():
     screen.clear()
     if selection == 0:
         debug()
-    elif 1 <= selection <= 3:
+    elif selection == 1:
+        build_menu()
+    elif 2 <= selection <= 3:
         under_Construction()
         menu()
     else:
@@ -234,6 +238,166 @@ def d_poke(pk):
         screen.refresh()
         selection = screen.getch()
     screen.clear()
+    
+def build_menu():
+    screen.nodelay(0)
+    screen.clear()
+    selection = -1
+    option = 0
+    lines = ['Build Poke', 'Build Team', 'Exit']
+    while selection < 0:
+        graphics = [0]*len(lines)
+        graphics[option] = curses.A_REVERSE
+        title = 'TogePy'
+        screen.addstr(0, (dims[1] - len(title))/2, title) #Show Title
+        for i, l in enumerate(lines):
+            screen.addstr((dims[0] - len(lines))/2 + i, (dims[1] - len(l))/2, l, graphics[i])
+        screen.refresh()
+        action = screen.getch()
+        if action == curses.KEY_UP:
+            option = (option - 1)%len(lines)
+        elif action == curses.KEY_DOWN:
+            option = (option + 1)%len(lines)
+        elif action == ord('\n'):
+            selection = option
+        elif action == ord('q'):
+            selection = action
+        screen.refresh()
+    screen.clear()
+    if selection == 0:
+        "Build Poke"
+        build_poke()
+    elif selection == 1:
+        "Build Team"
+        under_Construction()
+        build_menu()
+    else:
+        menu()
+        
+def build_poke():
+    screen.nodelay(0)
+    screen.clear()
+    dex = pkmn_test.pokedex
+    pk = [(x, dex[x].Name) for x in dex.keys()]
+    pk.sort()
+    levels = dict(zip(range(100), range(1, 101)))
+    natures = dict(zip(range(25),pkmn_test.nature_list()))
+    selection = -1
+    option = 0
+    ev_op = 0
+    iv_op = 0
+    lines = ['Pokemon', 'Level', 'Nature', 'Happiness', 'EVs', 'IVs', 'Ability','Moves']
+    #Create dictionaries needed to support selections
+    vals = dict(zip(range(len(lines)), [0]*len(lines)))
+    ev_vals = dict(zip(range(6), [0]*6))
+    iv_vals = dict(zip(range(6), [0]*6))
+    strvals = dict(zip(range(len(lines)), ['']*len(lines)))
+    maxval = dict(zip(range(len(lines)), [1]*len(lines)))
+    #Set max unique values for each option
+    maxval[0] = len(pk)
+    maxval[1] = 100
+    maxval[2] = len(natures)
+    maxval[3] = 256
+    maxval[4] = 256
+    maxval[5] = 32
+    #Display stuff
+    curses.init_pair(2, curses.COLOR_RED, curses.COLOR_BLACK)
+    curses.init_pair(3, curses.COLOR_BLUE, curses.COLOR_BLACK)    
+    while selection < 0:
+        graphics = [0]*len(lines)
+        graphics[option] = curses.A_REVERSE
+        ev_graphics = [0]*6
+        ev_graphics[ev_op] = curses.A_BOLD
+        iv_graphics = [0]*6
+        iv_graphics[iv_op] = curses.A_BOLD
+        screen.clear()
+        screen.border()
+        # Display Options
+        for i, l in enumerate(lines):
+            screen.addstr(i+1, 1, l, graphics[i])
+        # Update string values for each option
+        strvals[0] = '[' + str(pk[vals[0]][0]).rjust(3,'0') + '] ' + pk[vals[0]][1]
+        strvals[1] = str(levels[vals[1]])
+        strvals[2] = str(natures[vals[2]])
+        strvals[3] = str(vals[3])
+        abils = dex[vals[0]+1].Abilities
+        abils.sort()
+        maxval[6] = len(abils)
+        if (vals[6]+1) > maxval[6]:
+            vals[6] = 0
+        strvals[6] = abils[vals[6]]
+        # Display Values for each option
+        for i in range(len(lines)):
+            screen.addstr(i+1, len(lines[i])+2, strvals[i])
+        for i, s in enumerate([' HP: ', 'Atk: ', 'Def: ', 'SpA: ', 'SpD', 'Spe: ']):
+            screen.addstr(5, 9*i+4, s, ev_graphics[i])
+            screen.addstr(6, 9*i+4, s, iv_graphics[i])
+            screen.addstr(5, 9*i+9, str(ev_vals[i]).rjust(3,' '))
+            screen.addstr(6, 9*i+9, str(iv_vals[i]).rjust(3,' '))
+        # Create Pokemon
+        p_dex = dex[vals[0]+1]
+        lvl = levels[vals[1]]
+        EVs = pokeStructs.createEVs(ev_vals)
+        IVs = pokeStructs.createIVs(iv_vals)
+        Nature = natures[vals[2]]
+        Happiness = vals[3]
+        Ability = abils[vals[6]]
+        Moves = pkmn_test.random_Moveset()
+        poke = pokeStructs.Pokemon(p_dex, lvl, EVs, IVs, Nature, Happiness, Ability, Moves)
+        # Display Pokemon Stats
+        for i, s in enumerate(['HP', 'Atk', 'Def', 'SpA', 'SpD', 'Spe']):
+            if poke.Nature[s] < 1.0:
+                col = curses.color_pair(2)
+            elif poke.Nature[s] > 1.0:
+                col = curses.color_pair(3)
+            else:
+                col = curses.color_pair(0)
+            screen.addstr(12, 9*i+1, s.rjust(3,' ')+': ')
+            screen.addstr(12, 9*i+6, str(int(poke.Stats[s])).rjust(3,' '), col)
+        # Handle user input selection
+        screen.refresh()
+        action = screen.getch()
+        if action == curses.KEY_LEFT:
+            if option == 4: #Special handling for EV
+                if ev_vals[ev_op] == 0 and sum(ev_vals.values()) + 255 <= 510:
+                    ev_vals[ev_op] = (ev_vals[ev_op] - 1)%maxval[option]
+                elif ev_vals[ev_op] != 0:
+                    ev_vals[ev_op] = (ev_vals[ev_op] - 1)%maxval[option]
+            elif option == 5: #Special handling for IV
+                iv_vals[iv_op] = (iv_vals[iv_op] - 1)%maxval[option]
+            else:
+                vals[option] = (vals[option]-1)%maxval[option]
+        elif action == curses.KEY_RIGHT:
+            if option == 4: #Special handling for EV
+                if sum(ev_vals.values()) < 510:
+                    ev_vals[ev_op] = (ev_vals[ev_op] + 1)%maxval[option]
+                elif sum(ev_vals.values()) == 510 and ev_vals[ev_op] == 255:
+                    ev_vals[ev_op] = (ev_vals[ev_op] + 1)%maxval[option]
+            elif option == 5: #Special handling for IV
+                iv_vals[iv_op] = (iv_vals[iv_op] + 1)%maxval[option]
+            else:
+                vals[option] = (vals[option]+1)%maxval[option]
+        elif action == curses.KEY_UP:
+            option = (option - 1)%len(lines)
+        elif action == curses.KEY_DOWN:
+            option = (option + 1)%len(lines)
+        elif action == 351: #SHIFT-TAB
+            if option == 4:
+                ev_op = (ev_op - 1)%6
+            elif option == 5:
+                iv_op = (iv_op - 1)%6
+        elif action == 9: #TAB
+            if option == 4:
+                ev_op = (ev_op + 1)%6
+            elif option == 5:
+                iv_op = (iv_op + 1)%6        
+        elif action == ord('\n'):
+            selection = option
+        elif action == ord('q'):
+            selection = action
+        screen.refresh()
+    screen.clear()
+    build_menu()
     
 def under_Construction():
     screen.nodelay(0)

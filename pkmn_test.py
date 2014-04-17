@@ -57,7 +57,7 @@ def random_Poke():
     def random_Moves():
         return random_Moveset()
     p_dex = pokedex[random.choice(pokedex.keys())]
-    p = pokeStructs.Pokemon(p_dex, np.random.randint(1, 101), random_EVs(), random_IVs(), random_Nature(), random_Happiness(), random_Ability(), random_Moves(), bool(np.random.randint(2)))
+    p = pokeStructs.Pokemon(p_dex, np.random.randint(1, 101), random_EVs(), random_IVs(), random_Nature(), random_Happiness(), random_Ability(), random_Moves(), random.choice(items.keys()))
     p.CurHP = int(np.round(p.CurHP * np.random.random()))
     p.Status = random.choice([None, 'FZN', 'PAR', 'SLP', 'PSN', 'BRN'])
     return p
@@ -71,6 +71,10 @@ def restore_Team(t):
     for p in t.Members.values():
         p.CurHP = p.Stats['HP']
         p.Status = None
+        
+def nature_list():
+    l_natures = ['Hardy', 'Lonely', 'Brave', 'Adamant', 'Naughty', 'Bold', 'Docile', 'Relaxed', 'Impish', 'Lax', 'Timid', 'Hasty', 'Serious', 'Jolly', 'Naive', 'Modest', 'Mild', 'Quiet', 'Bashful', 'Rash', 'Calm', 'Gentle', 'Sassy', 'Careful', 'Quirky']
+    return l_natures
     
 if __name__ == '__main__':
     print 'Ready'
