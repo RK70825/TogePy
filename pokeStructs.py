@@ -48,6 +48,13 @@ class Pokemon(Pokemon_dex):
                                     self.EVs[stat]/4)*self.Level/100)+5))
         return d_Stats
     
+    def setLevel(self, level):
+        if level == 'As Is':
+            return
+        elif isinstance(level, int) and 1 <= level <= 100:
+            self.Level = float(level)
+            self.calcStats()
+    
     def init_battle(self):
         self.b_Stats = self.Stats
         
@@ -102,6 +109,10 @@ class Team:
             return False
         else:
             return True
+        
+    def pos_taken(self):
+        """Returns all occupied positions on a team"""
+        return self.Members.keys()
         
 class Move:
     def __init__(self, Name, Type, Power, Accuracy, Priority, PP, Target, 
