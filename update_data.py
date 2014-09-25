@@ -2,14 +2,16 @@ from pykemon import api
 import Pokemon
 import pokeStructs
 import cPickle as pickle
+from selenium import webdriver
+from bs4 import BeautifulSoup
 import requests
-import os.path
-import time
+import unicodedata
+import os.path, time
 import sys
+import re
 from clint.textui import progress
 
 ########################################################################
-       
 
 class fetcher():
     """Fetch pokedex, move, ability and item data"""
@@ -25,19 +27,118 @@ class fetcher():
         build_Items(max_file_age)
         build_Moves(max_file_age)
         build_Pokedex(max_file_age)
+        
+def smogonTable(url):
+    driver = webdriver.Firefox()
+    driver.get(url)
+    time.sleep(0.5)
+    more2load = True
+    while more2load:
+        old_len = len(driver.page_source)
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(0.1)
+        new_len = len(driver.page_source)
+        if old_len == new_len:
+            more2load = False
+    table = driver.find_element_by_xpath('//table/tbody')
+    driver.close()
+    table_html = table.get_attribute('innerHTML')
+    soup = BeautifulSoup(table_html)
+    table2 = soup.find_all('td')
+    return table2
+
+def checkAge(fname, max_age):
+    age = time.time() - os.path.getmtime(fname)
+    age = age/86400
+    if age <= max_age:
+        print '%s up to date' %(fname)
+    else:
+        print 'Building %s' %(fname)
+    return age <= max_age
+
+def toAscii(unicodestr):
+    return unicodedata.normalize('NFKD', unicodestr).encode('ascii', 'ignore')
+
+def build_Abilities(max_file_age = 7):
+    if checkAge('abilities', max_file_age):
+        return
     
+    abilTable = smogonTable('http://www.smogon.com/dex/xy/abilities/')
+    keys = [toAscii(x.get_text()) for x in abilTable[::2]]
+    vals = [toAscii(x.get_text()) for x in abilTable[1::2]]
+    Abilities = dict(zip(keys, vals))
+    
+    with open('abilities', 'wb') as f:
+        pickle.dump(Abilities, f)
+    print 'Abilities Saved'
+    return
+
+def build_Items(max_file_age = 7):
+    if checkAge('items', max_file_age):
+        return
+    
+    itemTable = smogonTable('http://www.smogon.com/dex/xy/items/')
+    keys = [toAscii(x.get_text()) for x in itemTable[::2]]
+    vals = [toAscii(x.get_text()) for x in itemTable[1::2]]
+    Items = dict(zip(keys, vals))
+        
+    with open('items', 'wb') as f:
+        pickle.dump(Items, f)
+    print 'Items Saved'
+    return
+
+def build_Moves(max_file_age = 7):
+    if checkAge('moves', max_file_age):
+        return
+    
+    Moves = {}
+    moveTable = smogonTable('http://www.smogon.com/dex/xy/moves/')
+    
+    for i in progress.bar(range(len(moveTable)/7)):
+        Name = toAscii(moveTable[7*i].get_text())
+        Type = toAscii(moveTable[7*i+1].get_text())
+        Damage = toAscii(moveTable[7*i+2].findAll("div")[0]['class'][1])
+        Power = toAscii(moveTable[7*i+3].get_text())[5:]
+        if Power == '':
+            Power = '-'
+        Accuracy = toAscii(moveTable[7*i+4].get_text())[8:-1]
+        if Accuracy == '':
+            Accuracy = '-'
+        PP = toAscii(moveTable[7*i+5].get_text())[2:]
+        Description = toAscii(moveTable[7*i+6].get_text())
+        Priority = 0
+        Target = 'self'
+        Moves[Name] = pokeStructs.Move(Name, Type, Power, Accuracy, Priority, 
+                                      PP, Target, Description, Damage)
+        
+    with open('moves', 'wb') as f:
+            pickle.dump(Moves, f)
+            print 'Moves Saved!'
+    return    
+
 def build_Pokedex(max_file_age = 7):
-    age = time.time() - os.path.getmtime('pokedex')
-    age = age/(86400)
-    if age <= max_file_age:
-        print 'Pokedex up to date'
-        sys.stdout.write('Pokedex up to date')
-        sys.stdout.flush()
+    if checkAge('pokedex', max_file_age):
         return
     
     Pokedex = {}
+    pokeTable = smogonTable('http://www.smogon.com/dex/xy/pokemon/')
     
-    print 'Building Pokedex'
+    for i in progress.bar(range(len(pokeTable)/11)):
+        Name = toAscii(pokeTable[11*i].get_text())
+        Types = toAscii(pokeTable[11*i+1].get_text())
+        Types = re.findall('[A-Z][^A-Z]*', Types)
+        Abilities = pokeTable[11*i+2].findAll('span')[::2]
+        Abilities += pokeTable[11*i+3].findAll('span')[::2]
+        Abilities = [toAscii(a.get_text()) for a in Abilities]
+        Tier = toAscii(pokeTable[11*i+4].get_text())
+        HP = toAscii(pokeTable[11*i+5].get_text())[2:]
+        Atk = toAscii(pokeTable[11*i+6].get_text())[3:]
+        Def = toAscii(pokeTable[11*i+7].get_text())[3:]
+        SpA = toAscii(pokeTable[11*i+8].get_text())[3:]
+        SpD = toAscii(pokeTable[11*i+9].get_text())[3:]                        
+        Spe = toAscii(pokeTable[11*i+10].get_text())[3:]
+        BaseStats = Pokemon.createBS(map(int, [HP, Atk, Def, SpA, SpD, Spe]))
+                    
     for i in progress.bar(range(1,719)):
         poke = api.get(pokemon_id=str(i))
         Name = str(poke.name)
@@ -45,120 +146,17 @@ def build_Pokedex(max_file_age = 7):
         Types = map(str, poke.types.keys())
         Tier = 'None'
         Abilities = map(str, poke.abilities.keys())
-        BaseStats = Pokemon.createBS(map(int, [poke.hp, poke.attack, poke.defense, poke.sp_atk, 
+        BaseStats = Pokemon.createBS(map(int, [poke.hp, poke.attack, 
+                                               poke.defense, poke.sp_atk, 
                                                poke.sp_def, poke.speed]))
         Height = str(poke.height)
         Weight = str(poke.weight)
-        Pokedex[ID] = pokeStructs.Pokemon_dex(Name, ID, Types, Tier, Abilities, BaseStats, Height, Weight)
+        Pokedex[ID] = pokeStructs.Pokemon_dex(Name, ID, Types, Tier, Abilities, 
+                                              BaseStats, Height, Weight)
         
     with open('pokedex', 'wb') as f:
         pickle.dump(Pokedex, f)
     print 'Pokedex Saved!'
-    return
-
-def build_Moves(max_file_age = 7):
-    age = time.time() - os.path.getmtime('moves')
-    age = age/(86400)
-    if age <= max_file_age:
-        print 'Moves up to date'
-        return
-    
-    Moves = {}
-    
-    print 'Building Moves'
-    url = 'http://www.smogon.com/bw/moves/'
-    r = requests.get(url)
-    move_data = r.content
-    
-    move_data = move_data.split('move_list')[1]
-    move_data = move_data.split('<a href')[1:]
-    
-    for i in progress.bar(range(len(move_data))):
-        m = move_data[i]
-        m = m.split('<td>')
-        link, Name = m[0].split('/bw/moves/')[1].split('</a>')[0].split('">')
-        link = 'http://www.smogon.com/bw/moves/' + link
-        Power = m[1].split('<')[0]
-        Accuracy = m[2].split('</td>')[0].split('%')[0]
-        PP = m[3].split('<')[0]
-        Target = m[4].strip().split('\n')[0]
-        Description = m[5].split('</td')[0]
-        m2 = requests.get(link)
-        m2 = m2.content
-        s = '<h1>' + Name + '</h1>'
-        m2 = m2.split(s)[1].split('</table>')[0]
-        m2 = m2.split('<td>')[1:]
-        Type = m2[0].split('">')[1].split('</a>')[0]
-        Priority = m2[4].split('</td>')[0]
-        Damage = m2[5].strip().split('\n')[0]
-        Moves[Name] = pokeStructs.Move(Name, Type, Power, Accuracy, Priority, PP, 
-                                  Target, Description, Damage)
-        
-    with open('moves', 'wb') as f:
-        pickle.dump(Moves, f)
-    print 'Moves Saved!'
-    return
-    
-def build_Abilities(max_file_age = 7):
-    age = time.time() - os.path.getmtime('abilities')
-    age = age/(86400)
-    if age <= max_file_age:
-        print 'Abilities up to date'
-        return
-    
-    Abilities = {}
-    
-    print 'Building Abilities'
-    url = 'http://www.smogon.com/bw/abilities/'
-    r = requests.get(url)
-    r = r.content
-    
-    abils = r.split('ability_list')[1]
-    abils = abils.split('<a href')[1:]
-    
-    for i in progress.bar(range(len(abils))):
-        a = abils[i]
-        a = a.split('<td>')
-        Name = a[0].split('/bw/abilities/')[1].split('</a>')[0].split('">')[1].lower()
-        Description = a[1].split('</td>')[0]
-        Abilities[Name] = Description
-    
-    with open('abilities', 'wb') as f:
-        pickle.dump(Abilities, f)
-    print 'Abilities Saved'
-    return
-    
-def build_Items(max_file_age = 7):
-    age = time.time() - os.path.getmtime('items')
-    age = age/(86400)
-    if age <= max_file_age:
-        print 'Items up to date'
-        return
-    
-    Items = {}
-    
-    print 'Building Items'
-    url = 'http://www.smogon.com/bw/items/'
-    r = requests.get(url)
-    r = r.content
-    
-    its = r.split('item_list')[1]
-    its = its.split('<a href')[1:]
-    
-    for i in progress.bar(range(len(its))):
-        i = its[i]
-        i = i.split('<td>')
-        link, Name = i[0].split('="')[1].split('</a>')[0].split('">')
-        link = 'http://www.smogon.com' + link
-        info = requests.get(link).content
-        s = '<h1>' + Name + '</h1>'
-        info = info.split(s)[1].strip()
-        Description = info.split('<p>')[1].split('</p>')[0]
-        Items[Name] = Description
-        
-    with open('items', 'wb') as f:
-        pickle.dump(Items, f)
-    print 'Items Saved'
     return
 
 if __name__=='__main__':

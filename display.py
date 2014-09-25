@@ -526,7 +526,7 @@ def battle_menu():
         battle_vals = user_options(battle_opts, 'Battle Options')
         team = select_team()
         battle_team = deepcopy(team)
-        for i in battle_team.pos_taken():
+        for i in battle_team.pos_taken(): #Change this loop out for a command in the team class to set whole team's level instead. Silly to do this on a per poke basis.
             poke = battle_team.get_Member(i)
             poke.setLevel(battle_vals['Level'])
             battle_team.set_Member(i, poke)

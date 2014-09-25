@@ -1,714 +1,914 @@
 (dp1
 S'Chople Berry'
 p2
-S'When held by a Pokemon, reduces the power of a damaging Fighting-type move that would hit the holder for super effective damage by 50%. Consumed after use. Natural Gift becomes a 60 Base Power Fighting-type attack when the user holds this Berry, but the Berry is consumed after use.'
+S'Reduces damage from a super effective Fighting-type attack by 50%. Consumed after use.'
 p3
 sS'Magnet'
 p4
-S"Increases the power of all of the holder's damage-dealing Electric-type attacks by 20%."
+S'Raises power of Electric-type moves 10%.'
 p5
 sS'Leppa Berry'
 p6
-S'Restores 10 PP to a move that has run out of PP. Consumed after use. Natural Gift becomes a 60 Base Power Fighting-type attack when the user holds this Berry, but the Berry is consumed after use.'
+S'Restores 10 PP to a move that has run out of PP. One-time use.'
 p7
-sS'Passho Berry'
+sS'Luminous Moss'
 p8
-S'When held by a Pokemon, reduces the power of a damaging Water-type move that would hit the holder for super effective damage by 50%. Consumed after use. Natural Gift becomes a 60 Base Power Water-type attack when the user holds this Berry, but the Berry is consumed after use.'
+S'Raises Special Defense by 1 stage if hit by a Water-type attack. Single use.'
 p9
-sS'Claw Fossil'
+sS'Passho Berry'
 p10
-S'The Claw Fossil can be revived at the Nacrene Museum to make a Level 20 Anorith.'
+S'Reduces damage from a super effective Water-type attack by 50%. Consumed after use.'
 p11
-sS'Cheri Berry'
-p12
-S'If held by a Pokemon, will automatically cure the paralysis status condition when inflicted on the holder. Consumed after use. Can also be used forcibly by the trainer in-game. Natural Gift becomes a 60 Base Power Fire-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p13
-sS'Jaboca Berry'
-p14
-S'If the holder is hit by a physical damaging attack, then it will consume the Jaboca Berry, and the attacker will take 12.5% of their max HP as damage. Natural Gift becomes an 80 Base Power Dragon-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p15
-sS'Destiny Knot'
-p16
-S'If the user becomes infatuated, the effect will transfer over to the enemy, making them both infatuated.'
-p17
-sS'Ganlon Berry'
-p18
-S"The Ganlon Berry raises the user's Defense by 1 stage once the user is brought down to 1/4 or lower of its HP. Consumed after use. Natural Gift becomes an 80 Base Power Ice-type attack when the user holds this Berry, but the Berry is consumed after use."
-p19
-sS'Meadow Plate'
-p20
-S"A hold item that increases the Base Power of all Grass-type moves by 20%. When held by a Pokemon with the Multitype ability, the holder's type will change to Grass."
-p21
-sS'Choice Specs'
-p22
-S'The user gains a 50% increase to Special Attack, but can only use the first move selected until it switches out or has its Choice Specs removed. This boost does not count as a stat change. If this item is replaced with another Choice item, such as by Trick or Switcheroo, then the user will not be locked into their original choice. If the holder is locked into a non-attacking move and is Taunted, they will use Struggle. If the holder is out of PP for the attack they are locked into, they will use Struggle, but if the PP for that move is restored by an Elixir or Leppa Berry, they can select a new attack. If a Pokemon obtains a Choice item after using an attack, they will be locked into that attack. If Magic Room is used while a Choice-locked Pokemon is on the field, then the Pokemon can switch attacks, but once Magic Room ceases to take effect, they are again locked on the move they were originally locked on before Magic Room was used.'
-p23
-sS'Metal Coat'
-p24
-S"Increases the power of all of the holder's damage-dealing Steel-type attacks by 20%. If Onix is traded while holding this item, it will evolve into Steelix. If Scyther is traded while holding this item, it will evolve into Scizor."
-p25
-sS'Occa Berry'
-p26
-S'When held by a Pokemon, reduces the power of a damaging Fire-type move that would hit the holder for super effective damage by 50%. Consumed after use. Natural Gift becomes a 60 Base Power Fire-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p27
-sS'Lax Incense'
-p28
-S'Raises the evasion of the holder by 5%. If Wobbuffet breeds while holding Lax Incense, a Wynaut Egg will be produced as opposed to a Wobbuffet Egg.'
-p29
-sS'Rock Gem'
-p30
-S'If the holder uses a damage-dealing Rock-type move, then the holder consumes this item and the power of that move is increased by 50%. One-time use.'
-p31
-sS'SilverPowder'
-p32
-S"Increases the power of all of the holder's damage-dealing Bug-type attacks by 20%."
-p33
-sS'Rocky Helmet'
-p34
-S'The holder will deal damage to the opponent equal to 1/6 of their maximum HP if the holder is hit by a contact move. Stacks with Iron Barbs or Rough Skin. If the holder is hit multiple times by the same move, for example by Tail Slap, then the holder will deal damage on every hit. If the opponent uses any of Bug Bite, Circle Throw, Dragon Tail, Pluck, Rapid Spin, SmellingSalt, or Wake-Up Slap, and then immediately faints due to the damage from Rocky Helmet, then the effect of that move will not take place. This is not the case for moves that would inflict status, flinch, or drain HP. The damage dealt is not blocked by Substitute.'
-p35
-sS'Wide Lens'
-p36
-S"Boosts the holder's accuracy by 10%."
-p37
-sS'Chesto Berry'
-p38
-S'If held by a Pokemon, will automatically cure the sleep status condition when inflicted on the holder. Consumed after use. Can also be used forcibly by the trainer in-game. Natural Gift becomes a 60 Base Power Water-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p39
-sS'Lum Berry'
-p40
-S'When the holder is afflicted with poison, Toxic poison, paralysis, burn, sleep, confusion, or is frozen while holding this item, they will immediately consume their Lum Berry to cure themselves of that status condition. Natural Gift becomes an 60 Base Power Flying-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p41
-sS'Sitrus Berry'
-p42
-S'Restores the HP of the holder by 25% of its max HP when at 50% HP or less. Consumed after use. Natural Gift becomes a 60 Base Power Psychic-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p43
 sS'Fire Gem'
-p44
-S'If the holder uses a damage-dealing Fire-type move, then the holder consumes this item and the power of that move is increased by 50%. One-time use.'
-p45
-sS'BrightPowder'
-p46
-S'Increases the evasion of the holder by 10%.'
-p47
-sS'Razor Fang'
-p48
-S'If Gligar is leveled up at night while holding this item, it will evolve into Gliscor. All moves that actively deal damage and do not already have a chance to flinch will gain a 10% chance of flinching the opponent. (This chance doubles to 20% if the holder has Serene Grace.) This effect does not stack with Stench, and is not affected by Sheer Force.'
-p49
-sS'Sky Plate'
-p50
-S"A hold item that increases the Base Power of all Flying-type moves by 20%. When held by a Pokemon with the Multitype ability, the holder's type will change to Flying."
-p51
-sS'Zoom Lens'
-p52
-S"If the holder moves after the target in the same turn, this item boosts the holder's accuracy by 20%."
-p53
-sS'Spooky Plate'
-p54
-S"A hold item that increases the Base Power of all Ghost-type moves by 20%. When held by a Pokemon with the Multitype ability, the holder's type will change to Ghost."
-p55
-sS'Iapapa Berry'
-p56
-S'Restores the HP of the holder by 1/8 of its maximum HP when at 50% HP or less. Consumed after use. If the holder has a Gentle, Hasty, Lonely, or Mild nature, it will also confuse the holder upon activation. Natural Gift becomes a 60 Base Power Dark-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p57
-sS'Black Belt'
-p58
-S"Increases the power of all of the holder's damage-dealing Fighting-type attacks by 20%."
-p59
-sS'Berry Juice'
-p60
-S'Berry Juice restores the HP of the holder by 20 hit points when the holder is at 50% HP or less.'
-p61
-sS'Rindo Berry'
-p62
-S'When held by a Pokemon, reduces the power of a damaging Grass-type move that would hit the holder for super effective damage by 50%. Consumed after use. If the holder uses the move Natural Gift, this Berry will provide a one-time 60 Base Power Grass-type attack.'
-p63
-sS'Stone Plate'
-p64
-S"A hold item that increases the Base Power of all Rock-type moves by 20%. When held by a Pokemon with the Multitype ability, the holder's type will change to Rock."
-p65
-sS'Mental Herb'
-p66
-S'When held by a Pokemon, Mental Herb will cure the effects of infatuation, Taunt, Encore, Torment, Disable, and Cursed Body if the holder is afflicted by any of these. Consumed after use.'
-p67
-sS'Choice Band'
-p68
-S'The user gains a 50% increase to Attack, but can only use the first move selected until it switches out or has its Choice Band removed. This boost does not count as a stat change. If this item is replaced with another Choice item, such as by Trick or Switcheroo, then the user will not be locked into their original choice. If the holder is locked into a non-attacking move and is Taunted, they will use Struggle. If the holder is runs out of PP for the attack they are locked into, they will use Struggle, but if the PP for that move is restored by an Elixir or Leppa Berry, they can select a new attack. If a Pokemon obtains a Choice item after using an attack, they will be locked into that attack. If Magic Room is used while a Choice-locked Pokemon is on the field, then the Pokemon can switch attacks, but once Magic Room ceases to take effect, they are again locked on the move they were originally locked in on before Magic Room was used.'
-p69
-sS'Life Orb'
-p70
-S"Whenever a Pokemon holding a Life Orb successfully uses a damaging attack, that attack deals 1.3x its normal damage, rounded down, and the attacker loses 1/10 of their maximum HP, even if the opponent is behind a Substitute. Damage rounds down to the minimum possible value for 10%\xe2\x80\x94thus, if the Pokemon has a HP stat ending in any number indivisible by 10, it can use Life Orb 11 times without dying. If a Pokemon has a HP stat of 19, then Life Orb will deal 1 HP recoil per attack, so the holder can attack 19 times at most. If the attack fails, adjusts HP instead of dealing damage, or if the holder's ability is Magic Guard, or if the holder's ability is Sheer Force and the attack was boosted by Sheer Force, then the holder takes no damage from Life Orb. For multi-hit attacks, all hits are treated as a single attack for the purposes of Life Orb recoil. If the Life Orb holder uses Circle Throw or Dragon Tail and then faints from the recoil, the target is not forced out. If a Pokemon steals Life Orb by using Thief or Covet, then that Pokemon takes recoil damage afterwards."
-p71
-sS'Babiri Berry'
-p72
-S'When held by a Pokemon, reduces the power of a damaging Steel-type move that would hit the holder for super effective damage by 50%. Consumed after use. Natural Gift becomes a 60 Base Power Steel-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p73
-sS'Damp Rock'
-p74
-S'Any Pokemon that uses Rain Dance while holding a Damp Rock will have its duration boosted to eight turns instead of the regular five.'
-p75
-sS'Enigma Berry'
-p76
-S"Restores 25% of the holder's max HP when the holder is hit by a super effective attack. Consumed after use."
-p77
-sS'Griseous Orb'
-p78
-S"May only be held by Giratina. When held by Giratina, transforms Giratina into Giratina-O. Raises the power of Giratina-O's Dragon- and Ghost-type moves by 4915/4096 (approximately 1.2). Griseous Orb cannot be removed through the use of Trick, Switcheroo, Thief, Covet, or Knock Off."
-p79
-sS'Oran Berry'
-p80
-S'Restores the HP of the holder by 10 HP when at 50% HP or less. Consumed after use. Natural Gift becomes a 60 Base Power Poison-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p81
-sS'Quick Powder'
-p82
-S"Doubles Ditto's Speed stat. If Ditto transforms into another Pokemon, the boosts are lost."
-p83
-sS'Shuca Berry'
-p84
-S'When held by a Pokemon, reduces the power of a damaging Ground-type move that would hit the holder for super effective damage by 50%. Consumed after use. If the holder uses the move Natural Gift, this Berry will provide a one-time 60 Base Power Ground-type attack.'
-p85
-sS'Grip Claw'
-p86
-S'A hold item that causes partial trapping moves, namely Bind, Clamp, Fire Spin, Magma Storm, Sand Tomb, Whirlpool, and Wrap, to always trap and damage the opponent for the maximum of 7 turns.'
-p87
-sS'Rock Incense'
-p88
-S"Increases the power of all of the holder's damage-dealing Rock-type attacks by 20%. If Sudowoodo breeds while holding Rock Incense, a Bonsly Egg will be produced as opposed to a Sudowoodo Egg."
-p89
-sS'DeepSeaScale'
-p90
-S'If held by Clamperl, its Special Defense stat is doubled in battle. If Clamperl is traded while holding this item, it will evolve into Gorebyss.'
-p91
-sS'Red Card'
-p92
-S'The opponent is forced out immediately if it attacks the holder. The holder of this item will still take damage from the attack. One-time use.'
-p93
-sS'Custap Berry'
-p94
-S"If the holder has 25% HP or less and uses a move, then it will consume the Custap Berry, and the move used will move before all other moves in the same priority bracket for that turn only. For example, if the holder were to use Spikes and the opponent to use Taunt, then if the Berry were to activate, Spikes would go before Taunt irrespective of the combatants' Speed stats. However, if the opponent were to use Bullet Punch or another elevated priority attack, then Bullet Punch would go first. Similarly, a Pokemon with Prankster will move before a Pokemon using Custap Berry when using a non-attacking move. Using Pursuit against a Pokemon that is switching out does not activate Custap Berry. Natural Gift becomes an 80 Base Power Ghost-type attack when the user holds this Berry, but the Berry is consumed after use."
-p95
-sS'Icicle Plate'
-p96
-S"A hold item that increases the Base Power of all Ice-type moves by 20%. When held by a Pokemon with the Multitype ability, the holder's type will change to Ice."
-p97
-sS'Ice Gem'
-p98
-S'If the holder uses a damage-dealing Ice-type move, then the holder consumes this item and the power of that move is increased by 50%. One-time use.'
-p99
-sS'Burn Drive'
-p100
-S'This item causes the move Techno Blast to become Fire-type. It does not change it in any other way, however, and has no effect on a Pokemon without this move.'
-p101
-sS'Zap Plate'
-p102
-S"A hold item that increases the Base Power of all Electric-type moves by 20%. When held by a Pokemon with the Multitype ability, the holder's type will change to Electric."
-p103
-sS'Flying Gem'
-p104
-S'If the holder uses a damage-dealing Flying-type move, then the holder consumes this item and the power of that move is increased by 50%. One-time use.'
-p105
-sS'Psychic Gem'
-p106
-S'If the holder uses a damage-dealing Psychic-type move, then the holder consumes this item and the power of that move is increased by 50%. One-time use.'
-p107
-sS'Charcoal'
-p108
-S"Increases the power of all of the holder's damage-dealing Fire-type attacks by 20%."
-p109
-sS'Leftovers'
-p110
-S'The holder recovers 1/16 (6.25%) of their maximum HP at the end of each turn, rounded down. This healing occurs after damage from sandstorm or hail, but before damage from poison, burn, Nightmare, or Leech Seed.'
-p111
-sS'Air Balloon'
-p112
-S"The Air Balloon gives the holder an immunity to all Ground-type moves. It pops once the user is hit by an attacking move. Indirect damage will not pop the Air Balloon, and neither will Ground-type moves. The user is also not affected by Spikes or Toxic Spikes. The Air Balloon's effect is negated when Gravity is in effect."
-p113
-sS'BlackGlasses'
-p114
-S"Increases the power of all of the holder's damage-dealing Dark-type attacks by 20%."
-p115
-sS'Helix Fossil'
-p116
-S'The Helix Fossil can be revived at the Nacrene Museum to make a Level 20 Omanyte.'
-p117
-sS'Skull Fossil'
-p118
-S'The Skull Fossil can be revived at the Nacrene Museum to make a Level 20 Cranidos.'
-p119
-sS'Mystic Water'
-p120
-S"Increases the power of all of the holder's damage-dealing Water-type attacks by 20%."
-p121
-sS'Liechi Berry'
-p122
-S"If the holder's HP hits or falls below 25%, this Berry will raise the holder's Attack by one stage. Consumed after use. Natural Gift becomes an 80 Base Power Grass-type attack when the user holds this Berry, but the Berry is consumed after use."
-p123
-sS'Shell Bell'
-p124
-S'Whenever the holder attacks, it is healed by 1/8 of the damage dealt by the attack.'
-p125
-sS'Splash Plate'
-p126
-S"A hold item that increases the Base Power of all Water-type moves by 20%. When held by a Pokemon with the Multitype ability, the holder's type will change to Water."
-p127
-sS'Sea Incense'
-p128
-S"Increases the power of all of the holder's damage-dealing Water-type attacks by 20%. If Marill or Azumarill breeds while holding Sea Incense, an Azurill Egg will be produced as opposed to a Marill Egg."
-p129
-sS'Kasib Berry'
-p130
-S'When held by a Pokemon, reduces the power of a damaging Ghost-type move that would hit the holder for super effective damage by 50%. Consumed after use. If the holder uses the move Natural Gift, this Berry will provide a one-time 60 Base Power Ghost-type attack.'
-p131
-sS'NeverMeltIce'
-p132
-S"Increases the power of all of the holder's damage-dealing Ice-type attacks by 20%."
-p133
-sS'Old Amber'
-p134
-S'The Old Amber can be revived at the Nacrene Museum to make a Level 20 Aerodactyl.'
-p135
-sS'Float Stone'
-p136
-S"This item, when attached to a Pok\xc3\xa9mon, halves the Pok\xc3\xa9mon's weight."
-p137
-sS'Electirizer'
-p138
-S'If Electabuzz is traded while holding this item, it will evolve into Electivire.'
-p139
-sS'Rowap Berry'
-p140
-S'If the holder takes damage from a special attack, then it will consume the Rowap Berry, and the attacker will take damage equal to 12.5% of its maximum health. Natural Gift becomes an 80 Base Power Dark-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p141
-sS'Petaya Berry'
-p142
-S"If the holder's HP hits or falls below 25%, this Berry will raise the holder's Special Attack by one stage. Consumed after use. Natural Gift becomes a 80 Base Power Poison-type attack when the user holds this Berry, but the Berry is consumed after use."
-p143
-sS'Fighting Gem'
-p144
-S'If the holder uses a damage-dealing Fighting-type move, then the holder consumes this item and the power of that move is increased by 50%. One-time use.'
-p145
-sS'Rose Incense'
-p146
-S"Increases the power of all of the holder's damage-dealing Grass-type attacks by 20%. If Roselia or Roserade breeds while holding Rose Incense, a Budew Egg will be produced as opposed to a Roselia Egg."
-p147
-sS'Steel Gem'
-p148
-S'If the holder uses a damage-dealing Steel-type move, then the holder consumes this item and the power of that move is increased by 50%. One-time use.'
-p149
-sS'Tanga Berry'
-p150
-S'When held by a Pokemon, reduces the power of a damaging Bug-type move that would hit the holder for super effective damage by 50%. Consumed after use. Natural Gift becomes a 60 Base Power Bug-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p151
-sS'Toxic Orb'
-p152
-S'Inflicts the holder with the Toxic poison status at the end of the first turn in which the holder was sent out. The poison status occurs after the holder would take poison damage, so the holder takes no poison damage on that first turn.'
-p153
-sS'Dread Plate'
-p154
-S"A hold item that increases the Base Power of all Dark-type moves by 20%. When held by a Pokemon with the Multitype ability, the holder's type will change to Dark."
-p155
-sS'Bug Gem'
-p156
-S'If the holder uses a damage-dealing Bug-type move, then the holder consumes this item and the power of that move is increased by 50%. One-time use.'
-p157
-sS'Ground Gem'
-p158
-S'If the holder uses a damage-dealing Ground-type move, then the holder consumes this item and the power of that move is increased by 50%. One-time use.'
-p159
-sS'Durin Berry'
-p160
-S'This is a Berry that was used in the older generation games, but it now has no use.'
-p161
-sS'Miracle Seed'
-p162
-S"Increases the power of all of the holder's damage-dealing Grass-type attacks by 20%."
-p163
-sS'Smooth Rock'
-p164
-S'Any Pokemon that uses Sandstorm while holding a Smooth Rock will have its duration boosted to eight turns instead of the regular five.'
-p165
-sS'Absorb Bulb'
-p166
-S"The Absorb Bulb boosts the holder's Special Attack by +1 when it is hit by a Water-type move, and is consumed upon use. Does not grant immunity to Water-type moves. If held by a Pokemon with Water Absorb, Storm Drain, or Dry Skin, the ability will activate first if a Water-type move is used, so the Absorb Bulb's effect will not activate, unless the holder's ability is changed."
-p167
-sS'Colbur Berry'
-p168
-S'When held by a Pokemon, reduces the power of a damaging Dark-type move that would hit the holder for super effective damage by 50%. Consumed after use. Natural Gift becomes a 60 Base Power Dark-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p169
-sS'Douse Drive'
-p170
-S'This ability causes the move Techno Blast to become Water-type. It does not change it in any other way, however, and has no effect on a Pokemon without this move.'
-p171
-sS'Wiki Berry'
-p172
-S'Restores the HP of the holder by 1/8 of its maximum HP when at 50% HP or less. Consumed after use. If the holder has an Adamant, Careful, Impish, or Jolly nature, it will also confuse the holder upon activation. Natural Gift becomes a 60 Base Power Rock-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p173
-sS'Armor Fossil'
-p174
-S'The Armor Fossil can be revived at the Nacrene Museum to make a Level 20 Shieldon.'
-p175
-sS'Wacan Berry'
-p176
-S'When held by a Pokemon, reduces the power of a damaging Electric-type move that would hit the holder for super effective damage by 50%. Consumed after use. Natural Gift becomes a 60 Base Power Electric-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p177
-sS'Plume Fossil'
-p178
-S'The Plume Fossil can be revived at the Nacrene Museum to make a Level 20 Archen.'
-p179
-sS'Iron Plate'
-p180
-S"A hold item that increases the Base Power of all Steel-type moves by 20%. When held by a Pokemon with the Multitype ability, the holder's type will change to Steel."
-p181
+p12
+S'Raises the power of a Fire-type move by 50%. One-time use.'
+p13
+sS'Maranga Berry'
+p14
+S'Raises Special Defense by 1 stage if hit by a Special attack. Single use.'
+p15
+sS'Cheri Berry'
+p16
+S'Cures paralysis. One-time use.'
+p17
+sS'Banettite'
+p18
+S'Mega-evolves Banette.'
+p19
+sS'Jaboca Berry'
+p20
+S'If hit by a physical attack, the attacker takes 12.5% damage. One-time use.'
+p21
+sS'Destiny Knot'
+p22
+S'If the holder becomes infatuated, so does the enemy.'
+p23
+sS'Ganlon Berry'
+p24
+S'Raises Defense by one stage when at 25% HP or less. One-time use.'
+p25
+sS'Meadow Plate'
+p26
+S'Raises power of Grass-type moves 20%. Pokemon with Multitype become Grass-type.'
+p27
+sS'Choice Specs'
+p28
+S'Hold item which raises Special Attack by 50%, but locks holder into one move.'
+p29
 sS'Water Gem'
-p182
-S'If the holder uses a damage-dealing Water-type move, then the holder consumes this item and the power of that move is increased by 50%. One-time use.'
-p183
-sS'Black Sludge'
-p184
-S'If held by a Poison-type, the holder recovers 6.25% of their maximum HP at the end of each turn, rounded down. This healing occurs after damage from sandstorm or hail, but before damage from poison, burn, Nightmare, or Leech Seed. If held by a Pokemon that is not a Poison-type, the holder is damaged by 12.5% of their maximum HP at the end of each turn, rounded down. This damage occurs after damage from sandstorm or hail, but before damage from poison, burn, Nightmare, or Leech Seed. A Pokemon with Magic Guard will not be damaged by Black Sludge.'
-p185
-sS'Hard Stone'
-p186
-S"Increases the power of all of the holder's damage-dealing Rock-type attacks by 20%."
-p187
-sS'Macho Brace'
-p188
-S"Reduces the holder's Speed by 50%. In-game, this item doubles the EVs gained by the holder from any battle."
-p189
-sS'Rawst Berry'
-p190
-S'Cures burn. One-time use. Natural Gift becomes a 60 Base Power Grass-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p191
-sS'Mind Plate'
-p192
-S"A hold item that increases the Base Power of all Psychic-type moves by 20%. When held by a Pokemon with the Multitype ability, the holder's type will change to Psychic."
-p193
-sS'Flame Orb'
-p194
-S'Inflicts the holder with the burn status at the end of the first turn in which the holder was sent out. The burn status occurs after the holder would take burn damage, so the holder takes no burn damage on that first turn.'
-p195
-sS'Aguav Berry'
-p196
-S'Restores the HP of the holder by 1/8 of its maximum HP when at 50% HP or less. Consumed after use. If the holder has a Lax, Naive, Naughty, or Rash nature, it will also confuse the holder upon activation. Natural Gift becomes a 60 Base Power Dragon-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p197
-sS'Normal Gem'
-p198
-S'If the holder uses a damage-dealing Normal-type move, then the holder consumes this item and the power of that move is increased by 50%. One-time use.'
-p199
-sS'Metal Powder'
-p200
-S"Raises Ditto's Defense and Special Defense by 50%. If Ditto transforms into another Pokemon, the boosts are lost."
-p201
-sS'Full Incense'
-p202
-S'Forces holder to move last in any given turn. If Snorlax breeds while holding Full Incense, a Munchlax Egg will be produced as opposed to a Snorlax Egg.'
-p203
-sS'Stick'
-p204
-S"If held by Farfetch'd, this item raises the critical hit ratio of the holder by two stages. No effect if held by any other Pokemon."
-p205
-sS'Scope Lens'
-p206
-S'Raises critical hit ratio of the holder by one stage.'
-p207
-sS'DeepSeaTooth'
-p208
-S'If held by Clamperl, its Special Attack stat is doubled in battle. If Clamperl is traded while holding this item, it will evolve into Huntail.'
-p209
-sS'Grass Gem'
-p210
-S'If the holder uses a damage-dealing Grass-type move, then the holder consumes this item and the power of that move is increased by 50%. One-time use.'
-p211
-sS'Cover Fossil'
-p212
-S'The Cover Fossil can be revived at the Nacrene Museum to make a Level 20 Tirtouga.'
-p213
-sS"King's Rock"
-p214
-S'If Poliwhirl is traded while holding this item, it will evolve into Politoed. If Slowpoke is traded while holding this item, it will evolve into Slowking. All moves that actively deal damage and do not already have a chance to flinch will gain a 10% chance of flinching the opponent. (This chance doubles to 20% if the holder has Serene Grace.) This effect does not stack with Stench, and is not affected by Sheer Force.'
-p215
-sS'Soft Sand'
-p216
-S"Increases the power of all of the holder's damage-dealing Ground-type attacks by 20%."
-p217
-sS'Quick Claw'
-p218
-S"This item gives the holder a 20% chance to move first in that turn. For example, if the holder were to use Spikes and the opponent to use Taunt, then if the item were to activate, Spikes would go before Taunt irrespective of the combatants' Speed stats. However, if the opponent were to use Bullet Punch or another elevated priority attack, then Bullet Punch would go first. Similarly, a Pokemon with Prankster will move before a Pokemon using Custap Berry when using a non-attacking move. Quick Claw's activation ignores the effects of Trick Room."
-p219
-sS'Spell Tag'
-p220
-S"Increases the power of all of the holder's damage-dealing Ghost-type attacks by 20%."
-p221
-sS'Binding Band'
-p222
-S"The damage dealt at the end of the turn by multi-turn trapping moves (Bind, Clamp, Fire Spin, Magma Storm, Sand Tomb, Whirlpool, Wrap) is increased from 6.25% to 12.5% of the target's maximum HP."
-p223
-sS'Soul Dew'
-p224
-S"If held by Latias or Latios, raises the holder's Special Attack and Special Defense stats by 50%. No effect if the holder is neither of these Pokemon."
-p225
-sS'EnergyPowder'
-p226
-S"Restores 50 HP to one Pokemon, but reduces that Pokemon's happiness level by 5 points. One-time use."
-p227
-sS'Ghost Gem'
-p228
-S'If the holder uses a damage-dealing Ghost-type move, then the holder consumes this item and the power of that move is increased by 50%. One-time use.'
-p229
-sS'Starf Berry'
-p230
-S"If the holder's HP hits or falls below 25%, this Berry will raise one of the holder's stats at random by two stages. Consumed after use. Natural Gift becomes an 80 Base Power Psychic-type attack when the user holds this Berry, but the Berry is consumed after use."
-p231
-sS'Icy Rock'
-p232
-S'Any Pokemon that uses Hail while holding an Icy Rock will have its duration boosted to eight turns instead of the regular five.'
-p233
-sS'Eject Button'
-p234
-S"A one-time use item that forces the holder to switch out immediately when hit by a damaging attack, even if they have not moved yet in that turn. This item bypasses trapping moves, such as Block or Wrap, Ingrain, and Suction Cups. The holder's controller is allowed to select the Pokemon sent out next. If a Pokemon with Sheer Force attacks a Pokemon holding Eject Button with a move that gains a boost from Sheer Force, then the effect of Eject Button is negated."
-p235
-sS'Big Root'
-p236
-S'When held by a Pokemon, increases the HP recovered by the holder by using a draining move by 30%. The damaging moves affected by this item are Absorb, Drain Punch, Dream Eater, Giga Drain, Horn Leech, Leech Life, and Mega Drain. Leech Seed will also recover more HP, but will not deal any extra damage to the opponent. Despite not being draining moves, the HP gain from Ingrain and Aqua Ring is also boosted, so each of them will heal 8.125% HP per turn as opposed to 6.25%.'
-p237
-sS'Micle Berry'
-p238
-S"If the holder's HP reaches or falls below 25%, then the next move has its accuracy increased by 20%. This Berry has no effect on Guillotine, Sheer Cold, Fissure, or Horn Drill. Consumed after use."
-p239
-sS'Fist Plate'
-p240
-S"A hold item that increases the Base Power of all Fighting-type moves by 20%. When held by a Pokemon with the Multitype ability, the holder's type will change to Fighting."
-p241
-sS'TwistedSpoon'
-p242
-S"Increases the power of all of the holder's damage-dealing Psychic-type attacks by 20%."
-p243
-sS'Apicot Berry'
-p244
-S"The Apicot Berry raises the user's Special Defense by 1 stage once the user is brought down to 1/4 or lower of its HP. Consumed after use. Natural Gift becomes an 80 Base Power Ground-type attack when the user holds this Berry, but the Berry is consumed after use."
-p245
-sS'Lansat Berry'
-p246
-S'If the holder has 25% HP or less, then it will consume the Lansat Berry, and the effect of Focus Energy takes place (critical hit ratio raised by two stages). This does not occur if Focus Energy is already in effect for the user. Natural Gift becomes an 80 Base Power Flying-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p247
-sS'Chill Drive'
-p248
-S'This item causes the move Techno Blast to become Ice-type. It does not change it in any other way, however, and has no effect on a Pokemon without this move.'
-p249
-sS'Heat Rock'
-p250
-S'Any Pokemon that uses Sunny Day while holding a Heat Rock will have its duration boosted to eight turns instead of the regular five.'
-p251
-sS'Electric Gem'
-p252
-S'If the holder uses a damage-dealing Electric-type move, then the holder consumes this item and the power of that move is increased by 50%. One-time use.'
-p253
-sS'Toxic Plate'
-p254
-S"A hold item that increases the Base Power of all Poison-type moves by 20%. When held by a Pokemon with the Multitype ability, the holder's type will change to Poison."
-p255
-sS'Haban Berry'
-p256
-S'When held by a Pokemon, reduces the power of a damaging Dragon-type move that would hit the holder for super effective damage by 50%. Consumed after use. Natural Gift becomes a 60 Base Power Dragon-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p257
-sS'Charti Berry'
-p258
-S'When held by a Pokemon, reduces the power of a damaging Rock-type move that would hit the holder for super effective damage by 50%. Consumed after use. Natural Gift becomes a 60 Base Power Rock-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p259
-sS'Root Fossil'
-p260
-S'The Root Fossil can be revived at the Nacrene Museum to make a Level 20 Lileep.'
-p261
-sS'Pecha Berry'
-p262
-S'This item is not seen in any tier because Lum Berry can cure any status ailment, while Pecha Berry can only cure one.'
-p263
-sS'Mago Berry'
-p264
-S'Restores the HP of the holder by 1/8 of its maximum HP when at 50% HP or less. Consumed after use. If the holder has a Brave, Quiet, Relaxed, or Sassy nature, it will also confuse the holder upon activation. Natural Gift becomes a 60 Base Power Ghost-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p265
-sS'Draco Plate'
-p266
-S"A hold item that increases the base power of all Dragon-type moves by 20% with the exception of Dragon Rage. When held by a Pokemon with the Multitype ability, the holder's type will change to Dragon."
-p267
-sS'Dark Gem'
-p268
-S'If the holder uses a damage-dealing Dark-type move, then the holder consumes this item and the power of that move is increased by 50%. One-time use.'
-p269
-sS'Shed Shell'
-p270
-S'Allows the holder to bypass all trapping effects, namely Ingrain, Arena Trap, Magnet Pull, Shadow Tag, Block, Mean Look, Spider Web, Bind, Clamp, Fire Spin, Magma Storm, Sand Tomb, Whirlpool, or Wrap. Pokemon that have used Ingrain or have the ability Suction Cups are still not affected by Roar and Whirlwind. A Pokemon locked into Ice Ball, Outrage, Petal Dance, Rollout, Thrash, or Uproar will still not be able to switch out.'
-p271
-sS'Earth Plate'
-p272
-S"A hold item that increases the Base Power of all Ground-type moves by 20%. When held by a Pokemon with the Multitype ability, the holder's type will change to Ground."
-p273
-sS'Light Clay'
-p274
-S'If the holder uses either Light Screen or Reflect, the two moves will stay on the field for eight turns instead of five.'
-p275
-sS'Salac Berry'
-p276
-S"If the holder's HP hits or falls below 25%, this Berry will raise the holder's Speed by one stage. Consumed after use. Natural Gift becomes an 80 Base Power Fighting-type attack when the user holds this Berry, but the Berry is consumed after use."
-p277
-sS'Muscle Band'
-p278
-S"Increases the power of all of the holder's damage-dealing physical attacks by 10%."
-p279
-sS'Lucky Punch'
-p280
-S"Raises Chansey's critical hit ratio by two stages."
-p281
-sS'Metronome'
-p282
-S'Increases the power of moves used consecutively by 20% each time it is used, up to a maximum of 5 turns (100%). If the holder switches out or uses another move, the boosts are lost. Metronome will not power up individual hits of multi-hit moves (such as Rock Blast) unless they are used consecutively.'
-p283
-sS'Choice Scarf'
-p284
-S'The user gains a 50% increase to Speed, but can only use the first move selected until it switches out or has its Choice Scarf removed. This boost does not count as a stat change. If this item is replaced with another Choice item, such as by Trick or Switcheroo, then the user will not be locked into their original choice. If the holder is locked into a non-attacking move and is Taunted, they will use Struggle. If the holder is runs out of PP for the attack they are locked into, they will use Struggle, but if the PP for that move is restored by an Elixir or Leppa Berry, they can select a new attack. If a Pokemon obtains a Choice item after using an attack, they will be locked into that attack. If Magic Room is used while a Choice-locked Pokemon is on the field, then the Pokemon can switch attacks, but once Magic Room ceases to take effect, they are again locked on the move they were originally locked in on before Magic Room was used.'
-p285
-sS'Razor Claw'
-p286
-S'Raises critical hit ratio of the holder by one stage. If Sneasel is leveled up during the night while holding this item, it will evolve into Weavile.'
-p287
-sS'Poison Barb'
-p288
-S"Increases the power of all of the holder's damage-dealing Poison-type attacks by 20%."
-p289
-sS'Flame Plate'
-p290
-S"A hold item that increases the Base Power of all Fire-type moves by 20%. When held by a Pokemon with the Multitype ability, the holder's type will change to Fire."
-p291
-sS'Insect Plate'
-p292
-S"A hold item that increases the Base Power of all Bug-type moves by 20%. When held by a Pokemon with the Multitype ability, the holder's type will change to Bug."
-p293
-sS'Odd Incense'
-p294
-S"Increases the power of all of the holder's damage-dealing Psychic-type attacks by 20%. If Mr. Mime breeds while holding Odd Incense, a Mime Jr. Egg will be produced as opposed to a Mr. Mime Egg."
-p295
-sS'Aspear Berry'
-p296
-S'If held by a Pokemon, will automatically cure the freeze status condition when inflicted on the holder. Consumed after use. Can also be used forcibly by the trainer in-game. Natural Gift becomes a 60 Base Power Ice-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p297
+p30
+S'Raises the power of a Water-type move by 50%. One-time use.'
+p31
+sS'Metal Coat'
+p32
+S'Raises power of Steel-type moves by 10%.'
+p33
+sS'Occa Berry'
+p34
+S'Reduces damage from a super effective Fire-type attack by 50%. Consumed after use.'
+p35
+sS'Lax Incense'
+p36
+S'Raises evasion by 5%.'
+p37
+sS'Rock Gem'
+p38
+S'Raises the power of a Rock-type move by 50%. One-time use.'
+p39
+sS'SilverPowder'
+p40
+S'Raises power of Bug-type moves by 10%.'
+p41
+sS'Rocky Helmet'
+p42
+S'Damages the opponent for 1/6 of max HP when the opponent makes contact.'
+p43
+sS'Wide Lens'
+p44
+S'Raises accuracy by 10%.'
+p45
+sS'Pink Bow'
+p46
+S'Raises power of Normal moves by 10%.'
+p47
+sS'Chesto Berry'
+p48
+S'Cures sleep. One-time use.'
+p49
+sS'Lum Berry'
+p50
+S'Cures status. One-time use.'
+p51
+sS'Sitrus Berry'
+p52
+S'Restores 1/4 of the max HP when at 1/2 HP or less. One-time use.'
+p53
+sS'BrightPowder'
+p54
+S'Raises evasion by 10%.'
+p55
+sS'Razor Fang'
+p56
+S'Certain moves have a 10% flinch rate.'
+p57
 sS'Figy Berry'
-p298
-S'Restores the HP of the holder by 1/8 of its maximum HP when at 50% HP or less. Consumed after use. If the holder has a Bold, Calm, Modest, or Timid nature, it will also confuse the holder upon activation. Natural Gift becomes a 60 Base Power Bug-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p299
-sS'Cell Battery'
-p300
-S"Raises the holder's Attack stat by one stage when it is hit by an Electric-type move. The item is consumed after use. It does not grant immunity to Electric-type moves. If held by a Pokemon with Volt Absorb or Lightningrod, the ability will activate first if an Electric-type move is used, so the item's effect will not activate, unless the holder's ability is changed."
-p301
-sS'Eviolite'
-p302
-S"This item, when attached to a Pok\xc3\xa9mon that is capable of evolving, will boost the Pok\xc3\xa9mon's Defense and Special Defense by 50%. Has no effect on Phione or any other Pokemon that is not capable of evolving."
-p303
-sS'Light Ball'
-p304
-S"Doubles Pikachu's Attack and Special Attack stats in battle. If Pikachu or Raichu breeds while holding Light Ball, the Pichu that hatches will know the move Volt Tackle."
-p305
-sS'White Herb'
-p306
-S'Removes any negative stat changes to the holder. Consumed after use.'
-p307
-sS'Sticky Barb'
-p308
-S'The holder takes damage equal to 12.5% of its max HP at the end of each turn. If the opponent uses a contact move on the holder, they will take damage equal to 12.5% of their max HP, and if they are not holding an item, they will obtain Sticky Barb as their held item. Does not affect a Pokemon with Magic Guard.'
-p309
-sS'Iron Ball'
-p310
-S"Cuts the holder's Speed by 50% and negates all the holder's immunities to Ground-type moves, including Levitate and the Flying-type. Rotom-S is not an exception. The holder is also made susceptible to Arena Trap, Spikes, and Toxic Spikes. A Flying-type Pok\xc3\xa9mon holding an Iron Ball will receive neutral damage from Ground-type moves regardless of its secondary type."
-p311
-sS'Dragon Fang'
-p312
-S"Increases the power of all of the holder's damage-dealing Dragon-type attacks by 20%."
-p313
-sS'Focus Sash'
-p314
-S'If the holder has max HP, Focus Sash guarantees it survives any attack with 1 HP. The item is consumed after use. If the holder is not at full health, the item will not activate. If the holder takes damage, but does not activate Focus Sash, and then recovers off this damage to return to 100% HP, Focus Sash can still activate. Focus Sash will allow the holder to survive the first hit of a multi-hit move like Fury Attack, but it will be KOed on the second. Focus Sash prevents the holder from OHKOing itself with confusion damage. Will activate if the holder would be KOed by Final Gambit, but does not protect against Doom Desire, Future Sight, or Destiny Bond. Does not protect the holder from OHKOing itself with recoil damage. Focus Sash will activate before Knock Off, so if Knock Off would KO in one hit, then Focus Sash will activate first and prevent the KO. A Pokemon with Sturdy will have its ability activate before Focus Sash, so Focus Sash has no effect on a Pokemon with Sturdy unless facing an opponent with Mold Breaker.'
-p315
-sS'Shock Drive'
-p316
-S'This item causes the move Techno Blast to become Electric-type. It does not change it in any other way, however, and has no effect on a Pokemon without this move.'
-p317
-sS'Silk Scarf'
-p318
-S"Increases the power of all of the holder's damage-dealing Normal-type attacks by 20%."
-p319
-sS'Expert Belt'
-p320
-S'When this item is held, if the holder uses an attack on the opponent that is super effective, its power is increased by 20%.'
-p321
-sS'Lagging Tail'
-p322
-S'Makes the holder move last in their priority bracket. The holder will still move last in their priority bracket even under the effects of Trick Room.'
-p323
-sS'Sharp Beak'
-p324
-S"Increases the power of all of the holder's damage-dealing Flying-type attacks by 20%."
-p325
-sS'Focus Band'
-p326
-S'There is a 10% chance that when the holder is hit by an attack that would otherwise cause fainting, it will survive with 1 HP. Can also protect against recoil damage, multi-hit moves, and self-inflicted confusion damage, but not from Future Sight or Doom Desire or from self-induced fainting due to Selfdestruct, Explosion, Memento, Lunar Dance, or Healing Wish. It will not protect against passive damage such as sandstorm or poison.'
-p327
-sS'Dome Fossil'
-p328
-S'The Dome Fossil can be revived at the Nacrene Museum to make a Level 20 Kabuto.'
-p329
-sS'Persim Berry'
-p330
-S'If held by a Pokemon, will automatically cure the confusion status condition when inflicted on the holder. Consumed after use. Can also be used forcibly by the trainer in-game. Natural Gift becomes a 60 Base Power Ground-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p331
-sS'Poison Gem'
-p332
-S'If the holder uses a damage-dealing Poison-type move, then the holder consumes this item and the power of that move is increased by 50%. One-time use.'
-p333
-sS'Yache Berry'
-p334
-S'When held by a Pokemon, reduces the power of a damaging Ice-type move that would hit the holder for super effective damage by 50%. Consumed after use. If the holder uses the move Natural Gift, this Berry will provide a one-time 60 Base Power Ice-type attack.'
-p335
-sS'Chilan Berry'
-p336
-S'When held by a Pokemon, reduces the power of a damaging Normal-type move used against the holder by 50%. Consumed after use. Natural Gift becomes a 60 Base Power Normal-type attack when the user holds this Berry, but the Berry is consumed after use.'
-p337
+p58
+S'Restores 1/8 max HP when at 50% HP or less. One-time use.'
+p59
+sS'Zoom Lens'
+p60
+S'Raises accuracy by 20% if the holder moves after the target.'
+p61
+sS'Spooky Plate'
+p62
+S'Raises power of Ghost-type moves by 20%. Pokemon with Multitype become Ghost-type.'
+p63
+sS'Iapapa Berry'
+p64
+S'Restores 1/8 of max HP when at 50% HP or less. One-time use.'
+p65
+sS'Kelpsy Berry'
+p66
+S'Pokeblock ingredient. Plant in loamy soil to grow a Kelpsy plant.'
+p67
+sS'Black Belt'
+p68
+S'Raises power of Fighting-type moves by 10%.'
+p69
+sS'Berry Juice'
+p70
+S'Restores 20 HP when at 50% HP or less. One-time use.'
+p71
+sS'Gengarite'
+p72
+S'Mega-evolves Gengar.'
+p73
+sS'Rindo Berry'
+p74
+S'Reduces damage from a super effective Grass-type attack by 50%. Consumed after use.'
+p75
+sS'Stone Plate'
+p76
+S'Raises base power of Rock-type moves by 20%. Pokemon with Multitype become Rock-type.'
+p77
+sS'Damp Rock'
+p78
+S'Rain Dance and Drizzle lasts 8 turns.'
+p79
+sS'Mental Herb'
+p80
+S'Cures infatuation. One-time use.'
+p81
+sS'Choice Band'
+p82
+S'Raises Attack by 50%, but locks the user into one move.'
+p83
+sS'Mewtwonite Y'
+p84
+S'Mega-evolves Mewtwo into Mega Mewtwo Y.'
+p85
+sS'Life Orb'
+p86
+S'Boosts power by 30%, user takes 10% recoil each turn it attacks.'
+p87
+sS'Babiri Berry'
+p88
+S'Reduces damage from a super effective Steel-type attack by 50%. Consumed after use.'
+p89
+sS'Garchompite'
+p90
+S'Mega-evolves Garchomp.'
+p91
+sS'Tyranitarite'
+p92
+S'Mega-evolves Tyranitar.'
+p93
+sS'Enigma Berry'
+p94
+S'Pokeblock ingredient. Restores 1/4 of the max HP when hit by a super effective move. One-time use.'
+p95
+sS'Griseous Orb'
+p96
+S"Raises the power of Giratina's STAB moves 20%. May only be held by Giratina, transforms Giratina into Giratina-O when held. Cannot be removed in battle."
+p97
+sS'Polka Dot Bow'
+p98
+S'Raises power of Normal moves by 12.5%.'
+p99
+sS'Oran Berry'
+p100
+S'Restores 10 HP when at 50% HP or less. One-time use.'
+p101
+sS'Quick Powder'
+p102
+S"Doubles Ditto's Speed."
+p103
+sS'Shuca Berry'
+p104
+S'Reduces damage from a super effective Ground-type attack by 50%. Consumed after use.'
+p105
+sS'Power Anklet'
+p106
+S'Reduces Speed by 50%. Grants 4 Speed EVs when the opponent is defeated. Passes down the Speed IV to its offspring in HGSS.'
+p107
+sS'Grip Claw'
+p108
+S'Partial trapping moves last 6 turns.'
+p109
+sS'Blazikenite'
+p110
+S'Mega-evolves Blaziken.'
+p111
+sS'Rock Incense'
+p112
+S'Raises power of Rock-type moves by 20%.'
+p113
+sS'DeepSeaScale'
+p114
+S"Doubles Clamperl's Special Defense."
+p115
+sS'Kangaskhanite'
+p116
+S'Mega-evolves Kangaskhan.'
+p117
+sS'Custap Berry'
+p118
+S'Activates at 25% HP. Next move used goes first. One-time use.'
+p119
+sS'Icicle Plate'
+p120
+S'Raises power of Ice-type moves 20%. Pokemon with Multitype become Ice-type.'
+p121
+sS'Pixie Plate'
+p122
+S"Holder's Fairy-type attacks have 1.2x power. Judgment is Fairy-type."
+p123
+sS'Ice Gem'
+p124
+S'Raises the power of a Ice-type move by 50%. One-time use.'
+p125
+sS'Burn Drive'
+p126
+S'Changes the type of Techno Blast to Fire.'
+p127
+sS'Zap Plate'
+p128
+S'Raises power of Electric moves by 20%. Pokemon with Multitype become Electric-type.'
+p129
+sS'Power Herb'
+p130
+S'Removes the charge up turn from all moves. One-time use.'
+p131
+sS'Flying Gem'
+p132
+S'Raises the power of a Flying-type move by 50%. One-time use.'
+p133
+sS'Psychic Gem'
+p134
+S'Raises the power of a Psychic-type move by 50%. One-time use.'
+p135
+sS'Venusaurite'
+p136
+S'Mega-evolves Venusaur.'
+p137
+sS'Charcoal'
+p138
+S'Raises power of Fire-type moves by 10%.'
+p139
+sS'Assault Vest'
+p140
+S"Holder's Sp. Def is 1.5x, but it can only use damaging moves."
+p141
+sS'Leftovers'
+p142
+S'Heals 1/16 of max HP each turn.'
+p143
+sS'Air Balloon'
+p144
+S'Makes the holder immune to Ground-type attacks. Disappears when holder is hit.'
+p145
+sS'BlackGlasses'
+p146
+S'Raises power of Dark-type moves by 10%.'
+p147
+sS'Heat Rock'
+p148
+S'Sunny Day and Drought lasts 8 turns.'
+p149
+sS'Scizorite'
+p150
+S'Mega-evolves Scizor.'
+p151
+sS'Mystic Water'
+p152
+S'Raises power of Water-type moves by 10%.'
+p153
+sS'Liechi Berry'
+p154
+S'Raises Attack by one stage when at 25% HP or less. One-time use.'
+p155
+sS'Snowball'
+p156
+S'Raises Attack by 1 stage if hit by an Ice-type attack. Single use.'
+p157
+sS'Shell Bell'
+p158
+S'Heals this Pokemon for 1/8 of the damage it does.'
+p159
+sS'Splash Plate'
+p160
+S'Raises power of Water-type moves by 20%. Pokemon with Multitype become Water-type.'
+p161
+sS'Sea Incense'
+p162
+S'Raises power of Water-type moves 5%.'
+p163
+sS'Kasib Berry'
+p164
+S'Reduces damage from a super effective Ghost-type attack by 50%. Consumed after use.'
+p165
+sS'NeverMeltIce'
+p166
+S'Raises power of Ice-type moves by 10%.'
+p167
+sS'Bitter Berry'
+p168
+S'Cures confusion. One-time use.'
+p169
+sS'Mewtwonite X'
+p170
+S'Mega-evolves Mewtwo into Mega Mewtwo X.'
+p171
+sS'Abomasite'
+p172
+S'Mega-evolves Abomasnow.'
+p173
+sS'Power Bracer'
+p174
+S'Reduces Speed by 50%. Grants 4 Attack EVs when the opponent is defeated. Passes down the Attack IV to its offspring in HGSS.'
+p175
+sS'Float Stone'
+p176
+S'The weight of the holder is halved.'
+p177
+sS'Toxic Orb'
+p178
+S'Badly poisons the holder.'
+p179
+sS'Rowap Berry'
+p180
+S'If hit by a special attack, the attacker takes 12.5% damage. One-time use.'
+p181
+sS'Petaya Berry'
+p182
+S'Raises Special Attack by one stage when at 25% HP or less. One-time use.'
+p183
+sS'Fighting Gem'
+p184
+S'Raises the power of a Fighting-type move by 50%. One-time use.'
+p185
+sS'Rose Incense'
+p186
+S'Raises power of Grass-type moves by 20%.'
+p187
+sS'Berry'
+p188
+S'Restores 10 HP when at 50% HP or less. One-time use.'
+p189
+sS'Tanga Berry'
+p190
+S'Reduces damage from a super effective Bug-type attack by 50%. Consumed after use.'
+p191
+sS'Roseli Berry'
+p192
+S'Halves damage taken from a super effective Fairy-type attack. Single use.'
+p193
+sS'Water Stone'
+p194
+S'Evolves Eevee, Poliwhirl, Shellder, and Staryu.'
+p195
+sS'Dread Plate'
+p196
+S"Raises power of the holder's Dark-type moves by 20%. Pokemon with Multitype become Dark-type."
+p197
+sS'Bug Gem'
+p198
+S'Raises the power of a Bug-type move by 50%. One-time use.'
+p199
+sS'Ground Gem'
+p200
+S'Raises the power of a Ground-type move by 50%. One-time use.'
+p201
+sS'Magmarizer'
+p202
+S'Evolves Magmar into Magmortar.'
+p203
+sS'Miracle Seed'
+p204
+S'Raises power of Grass-type moves by 10%.'
+p205
+sS'Smooth Rock'
+p206
+S'Makes Sandstorm and Sand Stream last 8 turns.'
+p207
+sS'Absorb Bulb'
+p208
+S'Boosts Special Attack of holder if hit by a Water-type attack. One-time use.'
+p209
+sS'Colbur Berry'
+p210
+S'Reduces damage from a super effective Dark-type attack by 50%. Consumed after use.'
+p211
+sS'Douse Drive'
+p212
+S'Changes the type of Techno Blast to Water.'
+p213
+sS'Weakness Policy'
+p214
+S'Attack and Special Attack sharply increase when hit super effectively. Single use.'
+p215
+sS'Wiki Berry'
+p216
+S'Restores 1/8 of max HP when at 50% of max HP or less. One-time use.'
+p217
+sS'Manectite'
+p218
+S'Mega-evolves Manectric.'
+p219
+sS'Pinsirite'
+p220
+S'Mega-evolves Pinsir.'
+p221
+sS'Steel Gem'
+p222
+S'Raises the power of a Steel-type move by 50%. One-time use.'
+p223
+sS'Iron Plate'
+p224
+S'Raises power of Steel-type moves by 20%. Pokemon with Multitype become Steel-type.'
+p225
+sS'Blastoisinite'
+p226
+S'Mega-evolves Blastoise.'
+p227
+sS'Black Sludge'
+p228
+S'Recovers 1/16 of max HP each turn for Poison-types. Damages all other types by 1/8 of max HP each turn.'
+p229
+sS'Alakazite'
+p230
+S'Mega-evolves Alakazam.'
+p231
+sS'Power Belt'
+p232
+S'Reduces Speed by 50%. Grants 4 Defense EVs when the opponent is defeated. Passes down the Defense IV to its offspring in HGSS.'
+p233
+sS'Hard Stone'
+p234
+S'Raises power of Rock-type moves by 10%.'
+p235
+sS'Macho Brace'
+p236
+S'Reduces Speed by 50%. Doubles EVs gained.'
+p237
+sS'Aerodactylite'
+p238
+S'Mega-evolves Aerodactyl.'
+p239
+sS'Rawst Berry'
+p240
+S'Cures burn. One-time use.'
+p241
+sS'Mind Plate'
+p242
+S'Raises power of Psychic-type moves by 20%. Pokemon with Multitype become Psychic-type.'
+p243
+sS'Flame Orb'
+p244
+S'Burns the holder.'
+p245
+sS'Power Band'
+p246
+S'Reduces Speed by 50%. Grants 4 Special Defense EVs when the opponent is defeated. Passes down the Special Defense IV to its offspring in HGSS.'
+p247
+sS'Aguav Berry'
+p248
+S'Restores 1/8 of max HP when at 50% HP or less. One-time use.'
+p249
+sS'Normal Gem'
+p250
+S'Raises the power of a Normal-type move by 50%. One-time use.'
+p251
+sS'Metal Powder'
+p252
+S"Raises Ditto's Defense and Special Defense by 50%."
+p253
+sS'Charizardite X'
+p254
+S'Mega-evolves Charizard into Mega Charizard X.'
+p255
+sS'Charizardite Y'
+p256
+S'Mega-evolves Charizard into Mega Charizard Y.'
+p257
 sS'Thick Club'
+p258
+S"Doubles Cubone's and Marowak's Attack."
+p259
+sS'Full Incense'
+p260
+S'Makes the holder move last.'
+p261
+sS'Heracronite'
+p262
+S'Mega-evolves Heracross.'
+p263
+sS'Mawilite'
+p264
+S'Mega-evolves Mawile.'
+p265
+sS'Scope Lens'
+p266
+S'Raises critical hit rate by one stage.'
+p267
+sS'DeepSeaTooth'
+p268
+S"Doubles Clamperl's Special Attack."
+p269
+sS'PSNCure Berry'
+p270
+S'Cures poison. One-time use.'
+p271
+sS'Grass Gem'
+p272
+S'Raises the power of a Grass-type move by 50%. One-time use.'
+p273
+sS'Stick'
+p274
+S"Raises Farfetch'd's critical hit ratio by two stages."
+p275
+sS"King's Rock"
+p276
+S'Moves recieve a 10% flinch chance, if they do not have one already.'
+p277
+sS'Lucarionite'
+p278
+S'Mega-evolves Lucario.'
+p279
+sS'Soft Sand'
+p280
+S'Raises power of Ground-type moves by 10%.'
+p281
+sS'Quick Claw'
+p282
+S'Gives the user a 23.4375% chance to go first.'
+p283
+sS'Gardevoirite'
+p284
+S'Mega-evolves Gardevoir.'
+p285
+sS'Spell Tag'
+p286
+S'Raises power of Ghost-type moves by 10%.'
+p287
+sS'Red Card'
+p288
+S'The opponent is forced out immediately if it attacks the holder. One-time use.'
+p289
+sS'Binding Band'
+p290
+S'Increases power of multi-turn trapping moves.'
+p291
+sS'Berserk Gene'
+p292
+S'Raises Attack, but causes confusion. One-time use.'
+p293
+sS'Ghost Gem'
+p294
+S'Raises the power of a Ghost-type move by 50%. One-time use.'
+p295
+sS'Starf Berry'
+p296
+S'Raises a stat by two stages when at 25% HP or less. One-time use.'
+p297
+sS'Icy Rock'
+p298
+S'Hail and Snow Warning lasts 8 turns.'
+p299
+sS'Eject Button'
+p300
+S'When the holder is hit, it immediately switches out. One-time use.'
+p301
+sS'Big Root'
+p302
+S'Increases HP gained from draining moves by 30%.'
+p303
+sS'Absolite'
+p304
+S'Mega-evolves Absol.'
+p305
+sS'Cleanse Tag'
+p306
+S'Decreases the appearance of wild Pokemon.'
+p307
+sS'Sky Plate'
+p308
+S'Raises power of Flying-type moves by 20%. Pokemon with Multitype become Flying-type.'
+p309
+sS'TwistedSpoon'
+p310
+S'Raises power of Psychic moves by 10%.'
+p311
+sS'Dark Glasses'
+p312
+S'A hold item that boosts Dark-type moves by 10%.'
+p313
+sS'Medichamite'
+p314
+S'Mega-evolves Medicham.'
+p315
+sS'Apicot Berry'
+p316
+S'Raises Special Defense by one stage when at 25% HP or less. One-time use.'
+p317
+sS'Lansat Berry'
+p318
+S'Raises critical hit rate by two stages when at 25% HP or less. One-time use.'
+p319
+sS'Chill Drive'
+p320
+S'Changes the type of Techno Blast to Ice.'
+p321
+sS'Power Lens'
+p322
+S"Reduces Speed by 50%. Grants 4 Special Attack EVs when the opponent is defeated. Passes down it's Special Attack IV to its offspring in HGSS."
+p323
+sS'Electric Gem'
+p324
+S'Raises the power of a Electric-type move by 50%. One-time use.'
+p325
+sS'Fist Plate'
+p326
+S'Raises power of Fighting-type moves 20%. Pokemon with Multitype become Fighting-type.'
+p327
+sS'Toxic Plate'
+p328
+S'Raises power of Poison-type moves by 20%. Pokemon with Multitype become Poison-type.'
+p329
+sS'Haban Berry'
+p330
+S'Reduces damage from a super effective Dragon-type attack by 50%. Consumed after use.'
+p331
+sS'Charti Berry'
+p332
+S'Reduces damage from a super effective Rock-type attack by 50%. Consumed after use.'
+p333
+sS'Gyaradosite'
+p334
+S'Mega-evolves Gyarados.'
+p335
+sS'Pecha Berry'
+p336
+S'Cures poison. One-time use.'
+p337
+sS'Houndoominite'
 p338
-S"If held by Cubone or Marowak, this item doubles the holder's Attack stat. No effect if held by any other Pokemon."
+S'Mega-evolves Houndoom.'
 p339
-sS'Adamant Orb'
+sS'Mago Berry'
 p340
-S'When held by Dialga, the Adamant Orb multiplies the power of all damage-dealing Dragon- and Steel-type moves used by the holder by 4915/4096 (approximately 1.2). Can be held by other Pokemon, but then has no effect.'
+S'Restores 1/8 max HP when at 50% HP or less. One-time use.'
 p341
-sS'Kebia Berry'
+sS'Salac Berry'
 p342
-S'When held by a Pokemon, reduces the power of a damaging Poison-type move that would hit the holder for super effective damage by 50%. Consumed after use. If the holder uses the move Natural Gift, this Berry will provide a one-time 60 Base Power Poison-type attack.'
+S'Raises Speed by one stage when at 25% HP or less. One-time use.'
 p343
-sS'Dragon Gem'
+sS'Gold Berry'
 p344
-S'If the holder uses a damage-dealing Dragon-type move, then the holder consumes this item and the power of that move is increased by 50%. One-time use.'
+S'Restores 30 HP when at 50% HP or less. One-time use.'
 p345
-sS'Rare Bone'
+sS'Draco Plate'
 p346
-S'Can be sold for 5,000 Pok\xc3\xa9 Dollars. No other use.'
+S'Raises power of Dragon-type moves by 20%. Pokemon with Multitype become Dragon-type.'
 p347
-sS'Wise Glasses'
+sS'Dark Gem'
 p348
-S"Increases the power of all of the holder's damage-dealing special attacks by 10%."
+S'Raises the power of a Dark-type move by 50%. One-time use.'
 p349
-sS'Wave Incense'
+sS'Shed Shell'
 p350
-S"Increases the power of all of the holder's damage-dealing Water-type attacks by 20%. If Mantine breeds while holding Wave Incense, a Mantyke Egg will be produced as opposed to a Mantine Egg."
+S'Allows holder to switch out even when trapped.'
 p351
-sS'Coba Berry'
+sS'Earth Plate'
 p352
-S'When held by a Pokemon, reduces the power of a damaging Flying-type move that would hit the holder for super effective damage by 50%. Consumed after use. Natural Gift becomes a 60 Base Power Flying-type attack when the user holds this Berry, but the Berry is consumed after use.'
+S'Raises power of Ground-type moves by 20%. Pokemon with Multitype become Ground-type.'
 p353
-sS'Lustrous Orb'
+sS'Miracle Berry'
 p354
-S"Raises the power of Palkia's Dragon- and Water-type moves by 4915/4096 (approximately 1.2)."
+S'Cures status. One-time use.'
 p355
-sS'Payapa Berry'
+sS'Light Clay'
 p356
-S'When held by a Pokemon, reduces the power of a damaging Psychic-type move that would hit the holder for super effective damage by 50%. Consumed after use. Natural Gift becomes a 60 Base Power Psychic-type attack when the user holds this Berry, but the Berry is consumed after use.'
+S'Reflect and Light Screen last 8 turns.'
 p357
+sS'Muscle Band'
+p358
+S'Raises power of physical moves by 10%.'
+p359
+sS'Mail'
+p360
+S'Prevents Trick from working.'
+p361
+sS'Lucky Punch'
+p362
+S"Raises Chansey's critical hit ratio by two stages."
+p363
+sS'Safety Goggles'
+p364
+S'Protects the holder from weather-related damage and powder moves.'
+p365
+sS'Soul Dew'
+p366
+S'Raises Special Attack and Special Defense of Latias and Latios by 50%.'
+p367
+sS'Metronome'
+p368
+S'Boost the power of attacks used consecutively.'
+p369
+sS'Choice Scarf'
+p370
+S'Hold item which raises Speed by 50%, but locks holder into one move.'
+p371
+sS'Razor Claw'
+p372
+S'Raises critical hit rate by one stage.'
+p373
+sS'Poison Barb'
+p374
+S'Raises power of Poison-type moves by 10%.'
+p375
+sS'Flame Plate'
+p376
+S'Raises power of Fire-type moves 20%. Pokemon with Multitype become Fire-type.'
+p377
+sS'Wacan Berry'
+p378
+S'Reduces damage from a super effective Electric-type attack by 50%. Consumed after use.'
+p379
+sS'Insect Plate'
+p380
+S'Raises power of Bug-type moves by 20%. Pokemon with Multitype become Bug-type.'
+p381
+sS'Odd Incense'
+p382
+S'Raises power of Psychic-type moves by 20%.'
+p383
+sS'Mystery Berry'
+p384
+S'Restores 5 PP to a move that has run out of PP. One-time use.'
+p385
+sS'Kee Berry'
+p386
+S'Raises Defense by 1 stage if hit by a Physical attack. Single use.'
+p387
+sS'Mint Berry'
+p388
+S'Cures sleep. One-time use.'
+p389
+sS'Aspear Berry'
+p390
+S'Cures freeze. One-time use.'
+p391
+sS'Aggronite'
+p392
+S'Mega-evolves Aggron.'
+p393
+sS'Cell Battery'
+p394
+S'Boosts Attack of holder if hit by an Electric-type attack. One-time use.'
+p395
+sS'PRZCure Berry'
+p396
+S'Cures paralysis. One-time use.'
+p397
+sS'Ice Berry'
+p398
+S'Cures burn. One-time use.'
+p399
+sS'Eviolite'
+p400
+S'Boosts Defense and Special Defense of holder by 50% if it is an NFE Pokemon.'
+p401
+sS'Light Ball'
+p402
+S"Doubles Pikachu's Special Attack."
+p403
+sS'White Herb'
+p404
+S'Removes stat decreases. One-time use.'
+p405
+sS'Sticky Barb'
+p406
+S'Causes damage to holder and attaches to attacker upon contact.'
+p407
+sS'Iron Ball'
+p408
+S'Reduces Speed by 50%.'
+p409
+sS'Micle Berry'
+p410
+S'The next move used will always hit.'
+p411
+sS'Dragon Fang'
+p412
+S'Raises power of Dragon-type moves by 10%.'
+p413
+sS'Focus Sash'
+p414
+S'The holder always survives one attack. One-time use.'
+p415
+sS'Shock Drive'
+p416
+S'Changes the type of Techno Blast to Electric.'
+p417
+sS'Silk Scarf'
+p418
+S'Raises power of Normal-type moves by 10%.'
+p419
+sS'Expert Belt'
+p420
+S'Super effective attacks are 20% stronger.'
+p421
+sS'Lagging Tail'
+p422
+S'Makes the holder move last.'
+p423
+sS'Sharp Beak'
+p424
+S'Raises power of Flying-type moves 10%.'
+p425
+sS'Focus Band'
+p426
+S'Gives an 11.7% chance of surviving a hit with at least 1 HP.'
+p427
+sS'Persim Berry'
+p428
+S'Cures confusion. One-time use.'
+p429
+sS'Hard Rock'
+p430
+S'Raises power of Rock-type moves by 12.5%.'
+p431
+sS'Poison Gem'
+p432
+S'Raises the power of a Poison-type move by 50%. One-time use.'
+p433
+sS'Chilan Berry'
+p434
+S'Berry blended to make Pokeblocks.'
+p435
+sS'Power Weight'
+p436
+S'Reduces Speed by 50%. Grants 4 HP EVs when the opponent is defeated. Passes down HP IV to its offspring in HGSS.'
+p437
+sS'Adamant Orb'
+p438
+S"Hold item which raises power of Dialga's STAB moves by 20%."
+p439
+sS'Kebia Berry'
+p440
+S'Reduces damage from a super effective Poison-type attack by 50%. Consumed after use.'
+p441
+sS'Dragon Gem'
+p442
+S'Raises the power of a Dragon-type move by 50%. One-time use.'
+p443
+sS'Yache Berry'
+p444
+S'Reduces damage from a super effective Ice-type attack by 50%. Consumed after use.'
+p445
+sS'Wise Glasses'
+p446
+S'Raises damage from special moves by 10%.'
+p447
+sS'Wave Incense'
+p448
+S'Raises power of Water-type moves by 20%.'
+p449
+sS'Ampharosite'
+p450
+S'Mega-evolves Ampharos.'
+p451
+sS'Coba Berry'
+p452
+S'Reduces damage from a super effective Flying-type attack by 50%. Consumed after use.'
+p453
+sS'Lustrous Orb'
+p454
+S"Raises power of Palkia's STAB moves by 20%."
+p455
+sS'Payapa Berry'
+p456
+S'Reduces damage from a super effective Psychic-type attack by 50%. Consumed after use.'
+p457
 s.
