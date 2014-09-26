@@ -445,12 +445,7 @@ def build_team():
     strvals = dict(zip(range(len(lines)), ['']*len(lines)))
     maxval = dict(zip(range(len(lines)), [1]*len(lines)))
     #Set max unique values for each option
-    maxval[0] = len(pk)
-    maxval[1] = len(pk)
-    maxval[2] = len(pk)
-    maxval[3] = len(pk)
-    maxval[4] = len(pk)
-    maxval[5] = len(pk)
+    maxval[0:6] = [len(pk)]*6
     while selection < 0:
         # Display Static Information
         graphics = [0]*len(lines)
@@ -460,12 +455,8 @@ def build_team():
             screen.addstr(i+1, 1, l, graphics[i])        
         screen.border()
         # Update string values for each option
-        strvals[0] = pk[vals[0]]
-        strvals[1] = pk[vals[1]]
-        strvals[2] = pk[vals[2]]
-        strvals[3] = pk[vals[3]]
-        strvals[4] = pk[vals[4]]
-        strvals[5] = pk[vals[5]]
+        for i in range(6):
+            strvals[i] = pk[vals[i]]
         # Display Current Choices
         for i in range(len(lines)):
             screen.addstr(i+1, len(lines[i])+2, strvals[i])
