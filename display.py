@@ -579,6 +579,11 @@ def battle_screen(player_1, player_2):
         p2_box.refresh()
         
     def turn_breakdown():
+        screen.refresh()
+        box1.refresh()
+        box2.refresh()
+        p1_box.refresh()
+        p2_box.refresh()
         return
         
     def get_choices():
@@ -802,12 +807,7 @@ def battle_screen(player_1, player_2):
     while quit == False:
         turn_setup()
         p1_choice, p2_choice, quit = get_choices()
-        
-        screen.refresh()
-        box1.refresh()
-        box2.refresh()
-        p1_box.refresh()
-        p2_box.refresh()
+        turn_breakdown()
         
     battle_menu()
         
