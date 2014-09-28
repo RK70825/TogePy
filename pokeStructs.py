@@ -54,10 +54,26 @@ class Pokemon(Pokemon_dex):
         else:
             self.Level = float(level)
             self.calcStats()
+            
+    def heal(self):
+        self.CurHP = self.Stats['HP']
+        self.Status = None
     
     def init_battle(self):
         self.b_Stats = self.Stats
+        self.Status = None
         
+    def update_satus(self, new_status):
+        self.Status = new_status
+        
+    def mod_HP(self, delta_hp):
+        if self.CurHP + delta_hp > self.Stats['HP']:
+            self.CurHP = self.Stats['HP']
+        elif self.CurHP + delta_hp < 0:
+            self.CurHP = 0
+        else:
+            self.CurHP = self.CurHP + delta_hp
+    
 ########################################################################
 class Team:
     """Pokemon Team"""
@@ -109,10 +125,25 @@ class Team:
             return False
         else:
             return True
-        
+    
+    #----------------------------------------------------------------------
     def pos_taken(self):
         """Returns all occupied positions on a team"""
         return self.Members.keys()
+    
+    #----------------------------------------------------------------------
+    def set_Levels(self, lvl):
+        """Sets levels of a team to a new value"""
+        for i in self.pos_taken():
+            poke = self.get_Member(i)
+            poke.setLevel(lvl)
+            self.set_Member(i, poke)
+            
+    def heal(self):
+        for i in self.pos_taken():
+            poke = self.get_Member(i)
+            poke.heal()
+            self.set_Member(i, poke)
         
 class Move:
     def __init__(self, Name, Type, Power, Accuracy, Priority, PP, Target, 
@@ -184,6 +215,19 @@ class Moveset:
             return False
         else:
             return True
+        
+########################################################################
+class Player:
+    """A human or CPU actor participating in a Pokemon Battle"""
+
+    #----------------------------------------------------------------------
+    def __init__(self, p_Type, team):
+        """Constructor"""
+        assert p_Type in ['Human', 'CPU'], 'Argument p_Type must take value of Human or CPU'
+        assert isinstance(team, Team), 'Argument team must be of type Team'
+        self.p_Type = p_Type
+        self.team = team
+        
   
 def calcNature(Nature):
     d_Nature = {'HP': 1.0, 'Atk': 1.0, 'SpD': 1.0, 'Def': 1.0, 'Spe': 1.0, 

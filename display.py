@@ -4,6 +4,9 @@ from pkmn_test import pokeStructs
 import numpy as np
 import save
 from copy import deepcopy
+import sys
+import time
+import random
 
 screen = curses.initscr()
 screen.clear()
@@ -13,9 +16,6 @@ curses.curs_set(0)
 screen.keypad(1)
 curses.start_color()
 dims = screen.getmaxyx()
-
-def scrolling_list(choices, screen, ymin, ymax, xmin, xmax):
-    return 'beh'
 
 def intro():
     lines = [
@@ -47,8 +47,13 @@ def intro():
     for z, l in enumerate(lines):
         screen.addstr((dims[0] - len(lines))/2 + z, (dims[1] - len(l))/2, l)
     screen.refresh()
-    screen.getch()
-    screen.clear()
+    key = screen.getch()
+    if key == ord('q'):
+        screen.clear()
+        screen.refresh()
+        sys.exit()
+    else:
+        return
     
 def menu():
     screen.nodelay(0)
@@ -509,34 +514,311 @@ def battle_menu():
     selection = standard_menu(lines)
     if selection in range(4):
         battle_opts = dict()
-        battle_opts['# Poke'] = range(6, 0, -1)
+        battle_opts['# Poke'] = [6, 1, 2, 3, 4, 5]
         battle_opts['Items'] = [True, False]
         battle_opts['Tier'] = ['Uber', 'Overused', 'Borderline', 'Underused', 'Borderline 2', 'Rarelyused', 'Neverused', 'Little Cup', 'Limbo', 'Not Fully Evolved']
         battle_opts['Level'] = ['As Is', 50, 100]
         battle_opts['Players'] = ['Human vs. CPU', 'CPU vs. CPU', 'Human vs. Human']
         battle_vals = user_options(battle_opts, 'Battle Options')
-        team = select_team()
-        battle_team = deepcopy(team)
-        for i in battle_team.pos_taken(): #Change this loop out for a command in the team class to set whole team's level instead. Silly to do this on a per poke basis.
-            poke = battle_team.get_Member(i)
-            poke.setLevel(battle_vals['Level'])
-            battle_team.set_Member(i, poke)
-        members = select_poke(team, int(battle_vals['# Poke']))
-        temp_team = pokeStructs.Team(battle_team.Name)
-        temp_team.set_All([battle_team.get_Member(i+1) for i in members.keys() if members[i] == 1])
-        d_team(temp_team)
-        battle_menu()
+        if battle_vals['Players'] == 'Human vs. CPU':
+            p1_type = 'Human'
+            p2_type = 'CPU'
+            team1 = deepcopy(select_team('Player 1'))
+            team2 = deepcopy(pkmn_test.random_Team())
+        elif battle_vals['Players'] == 'CPU vs. CPU':
+            p1_type = 'CPU'
+            p2_type = 'CPU'
+            team1 = deepcopy(pkmn_test.random_Team())
+            team2 = deepcopy(pkmn_test.random_Team())
+        elif battle_vals['Players'] == 'Human vs. Human':
+            p1_type = 'Human'
+            p2_type = 'Human'
+            team1 = deepcopy(select_team('Player 1'))
+            team2 = deepcopy(select_team('Player 2'))
+        else:
+            sys.exit(1234)
+        team1.set_Levels(battle_vals['Level'])
+        team2.set_Levels(battle_vals['Level'])
+        if int(battle_vals['# Poke']) == 6:
+            t1_members = dict(zip(range(6), [1]*6))
+            t2_members = dict(zip(range(6), [1]*6))
+        else:
+            t1_members = select_poke(team1, int(battle_vals['# Poke']))
+            t2_members = select_poke(team2, int(battle_vals['# Poke']))
+        team1_battle = pokeStructs.Team(team1.Name)
+        team1_battle.set_All([team1.get_Member(i+1) for i in t1_members.keys() if t1_members[i] == 1])
+        team2_battle = pokeStructs.Team(team2.Name)
+        team2_battle.set_All([team2.get_Member(i+1) for i in t2_members.keys() if t2_members[i] == 1])
+        team1_battle.heal()
+        team2_battle.heal()
+        player_1 = pokeStructs.Player(p1_type, team1_battle)
+        player_2 = pokeStructs.Player(p2_type, team2_battle)
+        d_team(team1)
+        d_team(team2)
+        battle_screen(player_1, player_2)
     else:
         menu()
         
-def select_team():
+def battle_screen(player_1, player_2):
+    def turn_setup():
+        screen.nodelay(0)
+        screen.clear()
+        box2.clear()
+        screen.border()
+        d_eevee(6, 6)
+        d_eevee(1, 55)
+        box1.box()
+        box2.box()
+        p1_box.box()
+        p2_box.box()
+        d_battle_pokes(p1_poke, p2_poke)
+        screen.refresh()
+        box1.refresh()
+        box2.refresh()
+        p1_box.refresh()
+        p2_box.refresh()
+        
+    def turn_breakdown():
+        return
+        
+    def get_choices():
+        def human_choice(poke):
+            q = False
+            Select = False
+            while Select == False:
+                act_1 = get_action_1()
+                if act_1 in ['q', 3]:
+                    choice = 'q'
+                    q = True
+                elif act_1 == 1:
+                    choice = 'b'
+                    invalid_option()
+                elif act_1 == 0:
+                    choice = get_move(poke)
+                elif act_1 == 2:
+                    choice = get_switch_poke()
+                
+                if choice == 'b':
+                    box2.clear()
+                    box2.box()
+                    box2.refresh()
+                    continue
+                elif choice == 'q':
+                    Select = True
+                    q = True
+                else:
+                    Select = True
+            
+            return q, choice
+        
+        def cpu_choice(poke):
+            moves = poke.Moves.Moves
+            m_Num = random.choice(range(1, 5))
+            choice = ('move', m_Num)
+            return choice
+        
+        q = False
+        
+        if player_1.p_Type == 'Human':
+            q, p1_choice = human_choice(p1_poke)
+        elif player_1.p_Type == 'CPU':
+            p1_choice = cpu_choice(p1_poke)
+            
+        box2.clear()
+        box2.box()
+        box2.refresh()
+        
+        if player_2.p_Type == 'Human':
+            q, p2_choice = human_choice(p2_poke)
+        elif player_2.p_Type == 'CPU':
+            p2_choice = cpu_choice(p2_poke)
+            
+        return p1_choice, p2_choice, q
+        
+    def get_action_1():
+        box1_row = 0
+        box1_col = 0
+        box1_lines = ['Fight', '---', 'Pokemon', 'Run']
+        selection = -1
+        
+        while selection < 0:
+            box1_option = 2*box1_col + box1_row
+            box1_graphics = [0]*4
+            box1_graphics[box1_option] = curses.A_REVERSE
+            box1.clear()
+            box1.box()
+            box1.addstr(2, 2, box1_lines[0], box1_graphics[0])
+            box1.addstr(2, 12, box1_lines[1], box1_graphics[1])
+            box1.addstr(4, 2, box1_lines[2], box1_graphics[2])
+            box1.addstr(4, 12, box1_lines[3], box1_graphics[3])
+            box1.refresh()
+            
+            action = screen.getch()
+            if action == curses.KEY_UP:
+                box1_col = (box1_col - 1)%2
+            elif action == curses.KEY_DOWN:
+                box1_col = (box1_col + 1)%2
+            elif action == curses.KEY_LEFT:
+                box1_row = (box1_row - 1)%2
+            elif action == curses.KEY_RIGHT:
+                box1_row = (box1_row + 1)%2
+            elif action == ord('q'):
+                selection = 'q'
+            elif action == ord('\n'):
+                selection = box1_option
+            else:
+                continue
+        return selection
+    
+    def get_move(poke):
+        box2_row = 0
+        box2_col = 0
+        r1 = {}
+        r2 = {}
+        selection = -1
+        moves = poke.Moves.Moves        
+        for i in xrange(2):
+            for j in xrange(2):
+                m_Num = 2*j+i+1
+                move = moves[m_Num]
+                m_Name = move.Name
+                m_PP = str(move.CurPP)+'/'+str(move.PP)
+                m_Type = move.Type
+                m_Dmg = move.Damage.capitalize()
+                if move.Power == None:
+                    m_Pwr = 'PWR: -'
+                else:
+                    m_Pwr = 'PWR: '+str(int(move.Power))
+                if move.Accuracy == None:
+                    m_Acc = 'ACC: -'
+                else:
+                    m_Acc = 'ACC: '+str(int(move.Accuracy))
+                r1[m_Num-1] = m_Name+' - '+m_PP
+                r2[m_Num-1] = m_Type+' - '+m_Dmg
+        
+        while selection < 0:
+            box2_option = 2*box2_col + box2_row
+            box2_graphics = [0]*4
+            box2_graphics[box2_option] = curses.A_REVERSE
+            box2.clear()
+            box2.box()
+            for m_Num in range(4):
+                i = m_Num%2
+                j = m_Num/2
+                s1 = r1[m_Num]
+                s2 = r2[m_Num]
+                box2.addstr(1+3*j, (2*i+1)*box2_dims[1]/4-len(s1)/2, s1, box2_graphics[m_Num])
+                box2.addstr(2+3*j, (2*i+1)*box2_dims[1]/4-len(s2)/2, s2, box2_graphics[m_Num])
+            box2.refresh()
+            
+            action = screen.getch()
+            if action == curses.KEY_UP:
+                box2_col = (box2_col - 1)%2
+            elif action == curses.KEY_DOWN:
+                box2_col = (box2_col + 1)%2
+            elif action == curses.KEY_LEFT:
+                box2_row = (box2_row - 1)%2
+            elif action == curses.KEY_RIGHT:
+                box2_row = (box2_row + 1)%2
+            elif action == ord('q'):
+                return 'q'
+            elif action == ord('b'):
+                return 'b'
+            elif action == ord('\n'):
+                selection = box2_option
+            else:
+                continue
+        return ('move', selection+1)
+    
+    def d_battle_pokes(pk1, pk2):
+        def pk_lines(pk):
+            name = pk.Name
+            lv = str(int(pk.Level))
+            cur_hp = int(pk.CurHP)
+            max_hp = int(pk.Stats['HP'])
+            
+            ws_1 = 24 - (len(name) + len(lv) + 2)
+            line1 = name + ' '*ws_1 + 'Lv' + lv
+            n_x = np.ceil(15 * cur_hp / max_hp)
+            line2 = ' '*5 + 'HP[' + 'X'*n_x + ' '*(15-n_x) + ']'
+            line3 = str(cur_hp) + '/' + str(max_hp)
+            line3 = line3.rjust(24)
+            lines = [line1, line2, line3]
+            return lines
+        
+        def print_poke(box, lines):
+            box.addstr(1, 1, lines[0])
+            box.addstr(2, 1, lines[1])
+            box.addstr(3, 1, lines[2])
+        
+        lines_1 = pk_lines(pk1)
+        lines_2 = pk_lines(pk2)
+        print_poke(p1_box, lines_1)
+        print_poke(p2_box, lines_2)
+        
+        return
+    
+    def d_eevee(y, x):
+        eevee = [';-.               ,',
+                 ' \ \'.           .\'/',
+                 '  \  \ .---. .-\' / ',
+                 '   \'. \'     `\_.\'  ',
+                 '     |(),()  |     ,',
+                 '     (  __   /   .\' \\',
+                 '    .\'\'.___.\'--,/\_,|',
+                 '   {  /     \   }   |',
+                 '    \'.\     /_.\'    /',
+                 '     |\'-.-\',  `; _.\'',
+                 '     |  |  |   |`',
+                 '     `""`""`"""`  ']
+        
+        for i in range(len(eevee)):
+            screen.addstr(y + i, x, eevee[i])
+        
+    def get_switch_poke():
+        return
+    
+    def invalid_option():
+        inv_win = curses.newwin(3, 20, 11, 30)
+        inv_win.box()
+        inv_win.addstr(1, 1, 'Invalid  Selection')
+        screen.refresh()
+        inv_win.refresh()
+        inv_win.getch()
+        inv_win.clear()
+        screen.refresh()
+        inv_win.refresh()
+        
+    box1 = curses.newwin(7, 17, 17, 61)
+    box2 = curses.newwin(7, 57, 17, 2)
+    p1_box = curses.newwin(5, 26, 12, 52)
+    p2_box = curses.newwin(5, 26, 1, 2)
+    box1_dims = box1.getmaxyx()
+    box2_dims = box2.getmaxyx()
+    p1_poke = player_1.team.get_Member(1)
+    p2_poke = player_2.team.get_Member(1)
+    
+    quit = False
+    while quit == False:
+        turn_setup()
+        p1_choice, p2_choice, quit = get_choices()
+        
+        screen.refresh()
+        box1.refresh()
+        box2.refresh()
+        p1_box.refresh()
+        p2_box.refresh()
+        
+    battle_menu()
+        
+def select_team(player):
     screen.nodelay(0)
     screen.clear()
     selection = -1
     option = 0
     teams = save.get_Files('TEAM')
     lines = ['Team', 'Member_1', 'Member_2', 'Member_3', 'Member_4', 'Member_5', 'Member_6', 'Confirm']
-    title = 'Team Selection'
+    title = player + ' Team Selection'
     #Create dictionaries needed to support selections
     vals = dict(zip(range(len(lines)), [0]*len(lines)))
     strvals = dict(zip(range(len(lines)), ['']*len(lines)))
@@ -603,9 +885,9 @@ def select_poke(team, max_pkmn):
     title = 'Team Selection'
     n_chosen = 0
     #Create dictionaries needed to support selections
-    vals = dict(zip(range(len(lines)), [0]*len(lines)))
-    strvals = dict(zip(range(len(lines)), ['[ ]']*len(lines)))
-    maxval = dict(zip(range(len(lines)), [1]*len(lines)))
+    vals = dict(zip(range(len(lines)), [0]*(len(lines)-1)))
+    strvals = dict(zip(range(len(lines)), ['[ ]']*(len(lines)-1)))
+    maxval = dict(zip(range(len(lines)), [1]*(len(lines)-1)))
     #Set max unique values for each option
     maxval[0] = len(lines)
     while selection < 0:
@@ -620,7 +902,7 @@ def select_poke(team, max_pkmn):
         # Display Current Choices
         for i in range(len(lines)-1):
             screen.addstr(2*i+3, 1, strvals[i])
-        # Flush to Screne
+        # Flush to Screen
         screen.refresh()
         # Key Stuff
         action = screen.getch()
@@ -782,7 +1064,19 @@ def user_options(d_settings, title='Select Options'):
     d_uservals = dict(zip(lines[:-1], strvals))
     return d_uservals
 
+
+def scrolling_list(choices, screen, ymin, ymax, xmin, xmax):
+    return 'beh'
+
 if __name__ == '__main__':
-    intro()
-    menu()
-    curses.endwin()
+    try:
+        intro()
+        menu()
+        screen.clear()
+        screen.refresh()
+        curses.endwin()
+    except Exception:
+        screen.clear()
+        screen.refresh()
+        curses.endwin()
+        raise
