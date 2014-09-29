@@ -7,6 +7,7 @@ from copy import deepcopy
 import sys
 import time
 import random
+import battle
 
 screen = curses.initscr()
 screen.clear()
@@ -794,19 +795,54 @@ def battle_screen(player_1, player_2):
         screen.refresh()
         inv_win.refresh()
         
+    def get_turn_order(choice_1, choice_2):
+        priority_1 = battle.turn_priority(choice_1)
+        priority_2 = battle.turn_priority(choice_2)
+        if priority_1 > priority_2:
+            return 1
+        elif priority_2 < priority_1:
+            return 2
+        else:
+            return battle.compare_speed(p1_poke, p2_poke)
+        return
+    
+    def execute_choice(choice):
+        return
+    
+    def game_over():
+        return False
+    
+    def end_game():
+        return
+    
     box1 = curses.newwin(7, 17, 17, 61)
     box2 = curses.newwin(7, 57, 17, 2)
     p1_box = curses.newwin(5, 26, 12, 52)
     p2_box = curses.newwin(5, 26, 1, 2)
     box1_dims = box1.getmaxyx()
     box2_dims = box2.getmaxyx()
-    p1_poke = player_1.team.get_Member(1)
-    p2_poke = player_2.team.get_Member(1)
+    p1_poke = player_1.team.get_Member(1) # change these out for poke selections
+    p2_poke = player_2.team.get_Member(1) # ^^^
     
     quit = False
     while quit == False:
         turn_setup()
         p1_choice, p2_choice, quit = get_choices()
+        if quit:
+            break
+        first_player = get_turn_order(p1_choice, p2_choice)
+        if first_player == 1:
+            first_choice = p1_choice
+            second_choice = p2_choice
+        else:
+            first_choice = p2_choice
+            second_choice = p1_choice
+        execute_choice(first_choice)
+        if game_over():
+            end_game()
+        execute_choice(second_choice)
+        if game_over():
+            end_game()
         turn_breakdown()
         
     battle_menu()
