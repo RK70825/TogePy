@@ -538,8 +538,8 @@ def battle_menu():
             team2 = deepcopy(select_team('Player 2'))
         else:
             sys.exit(1234)
-        team1.set_Levels(battle_vals['Level'])
-        team2.set_Levels(battle_vals['Level'])
+        team1.init_battle(battle_vals)
+        team2.init_battle(battle_vals)
         if int(battle_vals['# Poke']) == 6:
             t1_members = dict(zip(range(6), [1]*6))
             t2_members = dict(zip(range(6), [1]*6))
@@ -550,12 +550,10 @@ def battle_menu():
         team1_battle.set_All([team1.get_Member(i+1) for i in t1_members.keys() if t1_members[i] == 1])
         team2_battle = pokeStructs.Team(team2.Name)
         team2_battle.set_All([team2.get_Member(i+1) for i in t2_members.keys() if t2_members[i] == 1])
-        team1_battle.heal()
-        team2_battle.heal()
         player_1 = pokeStructs.Player(p1_type, team1_battle)
         player_2 = pokeStructs.Player(p2_type, team2_battle)
-        d_team(team1)
-        d_team(team2)
+        #d_team(team1)
+        #d_team(team2)
         battle_screen(player_1, player_2)
     else:
         menu()
@@ -572,7 +570,7 @@ def battle_screen(player_1, player_2):
         box2.box()
         p1_box.box()
         p2_box.box()
-        d_battle_pokes(p1_poke, p2_poke)
+        d_battle_pokes(player_1.poke, player_2.poke)
         screen.refresh()
         box1.refresh()
         box2.refresh()
@@ -586,9 +584,105 @@ def battle_screen(player_1, player_2):
         p1_box.refresh()
         p2_box.refresh()
         return
+    
+    def pick_poke(player, can_quit=False):
+        team = player.team
+        fainted = team.battle_ready()
+        def human_choice():
+            poke_win = curses.newwin(25, 80, 0, 0)
+            selection = -1
+            option = 0
+            while selection < 0:
+                graphics = [0]*team.Nmems
+                graphics[option] = curses.A_BLINK
+                poke_win.clear()
+                poke_win.box()
+                tName = 'Team: '+team.Name
+                poke_win.addstr(1, (dims[1] - len(tName))/2, tName, curses.A_BOLD)
+                for i in xrange(1, team.Nmems + 1):
+                    pk = team.get_Member(i)
+                    Name = pk.Name
+                    if len(Name) > 13:
+                        d_Name = Name[0:10]+'...'
+                    else:
+                        d_Name = Name
+                    poke_win.addstr(3*i+2, 1, d_Name, curses.A_BOLD | graphics[i - 1])
+                    poke_win.addstr(3*i+2, 17, 'Lv. '+str(int(pk.Level)).rjust(3, ' '))
+                    max_HP = pk.Stats['HP']
+                    cur_HP = pk.CurHP
+                    s_hp = 'HP: '+str(int(cur_HP)).rjust(3,' ')+'/'+str(int(max_HP)).ljust(3,' ')
+                    x = np.ceil(cur_HP * 20. / max_HP)
+                    poke_win.addstr(3*i+2, 27, s_hp)
+                    poke_win.addstr(3*i+2, 39, '['+('X'*x).ljust(20, ' ')+']')
+                    Item = str(pk.Item)
+                    sts = str(pk.Status)
+                    if sts == 'None':
+                        sts = '---'
+                    if len(Item) > 0:
+                        hasItem = 1
+                    else:
+                        hasItem = 0
+                    poke_win.addstr(3*i+2, 64, 'Item: ['+('X'*hasItem).ljust(1,' ')+']')
+                    d_status = {'---':0, 'PSN':1, 'BRN':2, 'FZN':3, 'SLP':4, 'PAR':5}
+                    curses.init_color(15, 500, 500, 500)
+                    curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_MAGENTA)
+                    curses.init_pair(2, curses.COLOR_WHITE, curses.COLOR_RED)
+                    curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_BLUE)
+                    curses.init_pair(4, curses.COLOR_WHITE, 8)
+                    curses.init_pair(5, curses.COLOR_WHITE, curses.COLOR_YELLOW)
+                    poke_win.addstr(3*i+2, 76, sts, curses.color_pair(d_status[sts]))
+                screen.refresh()
+                poke_win.refresh()
+                action = screen.getch()
+                if action == curses.KEY_UP:
+                    option = (option - 1)%team.Nmems
+                elif action == curses.KEY_DOWN:
+                    option = (option + 1)%team.Nmems
+                elif action == ord('d'):
+                    d_poke(team.get_Member(option+1))
+                    poke_win.touchwin()
+                    poke_win.refresh()
+                elif action == ord('\n'):
+                    if fainted[option+1] == 'F':
+                        invalid_option()
+                        poke_win.touchwin()
+                        poke_win.refresh()
+                    else:
+                        selection = option
+                elif action in [ord('q'), ord('b')]:
+                    if can_quit:
+                        selection = 'b'
+                    else:
+                        invalid_option()
+                        poke_win.touchwin()
+                        poke_win.refresh()
+            if selection == 'b':
+                poke_win.clear()
+                poke_win.refresh()
+                del poke_win
+                screen.refresh()
+                return 'b'
+            elif selection == ord('d'):
+                pk = team.get_Member(selection + 1)
+                d_poke(pk)
+            poke_win.clear()
+            del poke_win
+            return selection+1
+        
+        def cpu_choice():
+            while True:
+                i = random.choice(fainted.keys())
+                if fainted[i] == 'A':
+                    break
+            return i
+        
+        if player.p_Type == 'Human':
+            return human_choice()
+        elif player.p_Type == 'CPU':
+            return cpu_choice()
         
     def get_choices():
-        def human_choice(poke):
+        def human_choice(player):
             q = False
             Select = False
             while Select == False:
@@ -600,9 +694,11 @@ def battle_screen(player_1, player_2):
                     choice = 'b'
                     invalid_option()
                 elif act_1 == 0:
-                    choice = get_move(poke)
+                    choice = get_move(player.poke)
                 elif act_1 == 2:
-                    choice = get_switch_poke()
+                    choice = ('switch', pick_poke(player, True))
+                    if choice[1] == 'b':
+                        choice = 'b'
                 
                 if choice == 'b':
                     box2.clear()
@@ -617,8 +713,8 @@ def battle_screen(player_1, player_2):
             
             return q, choice
         
-        def cpu_choice(poke):
-            moves = poke.Moves.Moves
+        def cpu_choice(player):
+            moves = player.poke.Moves.Moves
             m_Num = random.choice(range(1, 5))
             choice = ('move', m_Num)
             return choice
@@ -626,18 +722,18 @@ def battle_screen(player_1, player_2):
         q = False
         
         if player_1.p_Type == 'Human':
-            q, p1_choice = human_choice(p1_poke)
+            q, p1_choice = human_choice(player_1)
         elif player_1.p_Type == 'CPU':
-            p1_choice = cpu_choice(p1_poke)
+            p1_choice = cpu_choice(player_1)
             
         box2.clear()
         box2.box()
         box2.refresh()
         
         if player_2.p_Type == 'Human':
-            q, p2_choice = human_choice(p2_poke)
+            q, p2_choice = human_choice(player_2)
         elif player_2.p_Type == 'CPU':
-            p2_choice = cpu_choice(p2_poke)
+            p2_choice = cpu_choice(player_2)
             
         return p1_choice, p2_choice, q
         
@@ -672,6 +768,8 @@ def battle_screen(player_1, player_2):
                 selection = 'q'
             elif action == ord('\n'):
                 selection = box1_option
+            elif action == curses.KEY_MOUSE:
+                box1_col = (box1_col - 1)%2
             else:
                 continue
         return selection
@@ -781,9 +879,6 @@ def battle_screen(player_1, player_2):
         for i in range(len(eevee)):
             screen.addstr(y + i, x, eevee[i])
         
-    def get_switch_poke():
-        return
-    
     def invalid_option():
         inv_win = curses.newwin(3, 20, 11, 30)
         inv_win.box()
@@ -803,10 +898,12 @@ def battle_screen(player_1, player_2):
         elif priority_2 < priority_1:
             return 2
         else:
-            return battle.compare_speed(p1_poke, p2_poke)
+            return battle.compare_speed(player_1.poke, player_2.poke)
         return
     
-    def execute_choice(choice):
+    def execute_choice(choice, player):
+        if choice[0] == 'switch':
+            player.poke = player.team.get_Member(choice[1])
         return
     
     def game_over():
@@ -821,8 +918,8 @@ def battle_screen(player_1, player_2):
     p2_box = curses.newwin(5, 26, 1, 2)
     box1_dims = box1.getmaxyx()
     box2_dims = box2.getmaxyx()
-    p1_poke = player_1.team.get_Member(1) # change these out for poke selections
-    p2_poke = player_2.team.get_Member(1) # ^^^
+    player_1.poke = player_1.team.get_Member(pick_poke(player_1, False))
+    player_2.poke = player_2.team.get_Member(pick_poke(player_2, False))
     
     quit = False
     while quit == False:
@@ -832,15 +929,19 @@ def battle_screen(player_1, player_2):
             break
         first_player = get_turn_order(p1_choice, p2_choice)
         if first_player == 1:
+            p1 = player_1
+            p2 = player_2
             first_choice = p1_choice
             second_choice = p2_choice
         else:
+            p1 = player_2
+            p2 = player_1
             first_choice = p2_choice
             second_choice = p1_choice
-        execute_choice(first_choice)
+        execute_choice(first_choice, p1)
         if game_over():
             end_game()
-        execute_choice(second_choice)
+        execute_choice(second_choice, p2)
         if game_over():
             end_game()
         turn_breakdown()

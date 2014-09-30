@@ -53,7 +53,7 @@ class Pokemon(Pokemon_dex):
             return
         else:
             self.Level = float(level)
-            self.calcStats()
+            self.Stats = self.calcStats()
             
     def heal(self):
         self.CurHP = self.Stats['HP']
@@ -130,20 +130,40 @@ class Team:
     def pos_taken(self):
         """Returns all occupied positions on a team"""
         return self.Members.keys()
+            
+    #----------------------------------------------------------------------
+    def init_battle(self, battle_vals):
+        """Initializes team for given battle"""
+        
+        def set_Levels(lvl):
+            for i in self.pos_taken():
+                poke = self.get_Member(i)
+                poke.setLevel(lvl)
+                self.set_Member(i, poke)
+            return
+        
+        def heal():
+            for i in self.pos_taken():
+                poke = self.get_Member(i)
+                poke.heal()
+                self.set_Member(i, poke)
+            return
+        
+        set_Levels(battle_vals['Level'])
+        heal()
+        return
     
     #----------------------------------------------------------------------
-    def set_Levels(self, lvl):
-        """Sets levels of a team to a new value"""
+    def battle_ready(self):
+        """Returns vital statuses of pokemon"""
+        vital = {}
         for i in self.pos_taken():
             poke = self.get_Member(i)
-            poke.setLevel(lvl)
-            self.set_Member(i, poke)
-            
-    def heal(self):
-        for i in self.pos_taken():
-            poke = self.get_Member(i)
-            poke.heal()
-            self.set_Member(i, poke)
+            if poke.CurHP == 0:
+                vital[i] = 'F'
+            else:
+                vital[i] = 'A'
+        return vital
         
 class Move:
     def __init__(self, Name, Type, Power, Accuracy, Priority, PP, Target, 
@@ -227,6 +247,7 @@ class Player:
         assert isinstance(team, Team), 'Argument team must be of type Team'
         self.p_Type = p_Type
         self.team = team
+        self.poke = None
         
   
 def calcNature(Nature):
