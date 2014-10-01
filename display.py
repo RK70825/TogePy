@@ -518,7 +518,7 @@ def battle_menu():
         battle_opts['# Poke'] = [6, 1, 2, 3, 4, 5]
         battle_opts['Items'] = [True, False]
         battle_opts['Tier'] = ['Uber', 'Overused', 'Borderline', 'Underused', 'Borderline 2', 'Rarelyused', 'Neverused', 'Little Cup', 'Limbo', 'Not Fully Evolved']
-        battle_opts['Level'] = ['As Is', 50, 100]
+        battle_opts['Level'] = [50, 100, 'As Is']
         battle_opts['Players'] = ['Human vs. CPU', 'CPU vs. CPU', 'Human vs. Human']
         battle_vals = user_options(battle_opts, 'Battle Options')
         if battle_vals['Players'] == 'Human vs. CPU':
@@ -701,9 +701,11 @@ def battle_screen(player_1, player_2):
                         choice = 'b'
                 
                 if choice == 'b':
-                    box2.clear()
-                    box2.box()
-                    box2.refresh()
+                    #box2.clear()
+                    #box2.box()
+                    #box2.refresh()
+                    #screen.refresh()
+                    turn_setup()
                     continue
                 elif choice == 'q':
                     Select = True
@@ -829,7 +831,10 @@ def battle_screen(player_1, player_2):
             elif action == ord('b'):
                 return 'b'
             elif action == ord('\n'):
-                selection = box2_option
+                if moves[box2_option+1].CurPP == 0:
+                    invalid_option()
+                else:
+                    selection = box2_option
             else:
                 continue
         return ('move', selection+1)
@@ -901,13 +906,37 @@ def battle_screen(player_1, player_2):
             return battle.compare_speed(player_1.poke, player_2.poke)
         return
     
-    def execute_choice(choice, player):
+    def execute_choice(choice, user, receiver):
         if choice[0] == 'switch':
-            player.poke = player.team.get_Member(choice[1])
+            user.poke = user.team.get_Member(choice[1])
+        elif choice[0] == 'move':
+            atker = user.poke
+            recvr = receiver.poke
+            move = user.poke.Moves.Moves[choice[1]]
+            move.CurPP -= 1
+            try:
+                dmg = battle.calc_Damage(atker, recvr, move)
+            except:
+                dmg = int(recvr.Stats['HP']*0.25)
+            box2.addstr(1, 1, atker.Name + ' used ' + move.Name + '.')
+            box2.addstr(2, 1, recvr.Name + ' took ' + str(dmg) + ' damage.')
+            recvr.mod_HP(-1*dmg)
+            box2.refresh()
+            screen.getch()
+            box2.clear()
+            box2.box()
+            box2.refresh()
         return
     
     def game_over():
-        return False
+        f1 = player_1.team.battle_ready()
+        n1 = sum([1 if (f1[k] == 'A') else 0 for k in f1.keys()])
+        f2 = player_2.team.battle_ready()
+        n2 = sum([1 if (f2[k] == 'A') else 0 for k in f2.keys()])
+        if (n1 == 0) or (n2 == 0):
+            return True
+        else:
+            return False
     
     def end_game():
         return
@@ -938,12 +967,17 @@ def battle_screen(player_1, player_2):
             p2 = player_1
             first_choice = p2_choice
             second_choice = p1_choice
-        execute_choice(first_choice, p1)
+        execute_choice(first_choice, p1, p2)
         if game_over():
-            end_game()
-        execute_choice(second_choice, p2)
+            break
+        elif p2.poke.CurHP == 0:
+            p2.poke = p2.team.get_Member(pick_poke(p2, False))
+        else:
+            execute_choice(second_choice, p2, p1)
         if game_over():
-            end_game()
+            break
+        elif p1.poke.CurHP == 0:
+            p1.poke = p1.team.get_Member(pick_poke(p1, False))
         turn_breakdown()
         
     battle_menu()
