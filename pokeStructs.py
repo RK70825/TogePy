@@ -248,8 +248,56 @@ class Player:
         self.p_Type = p_Type
         self.team = team
         self.poke = None
+
+########################################################################
+class Field:
+    """A field in the battle"""
+
+    #----------------------------------------------------------------------
+    def __init__(self):
+        """Constructor"""
+        self.effects = None
         
-  
+########################################################################
+class Side:
+    """A side of the battlefield"""
+
+    #----------------------------------------------------------------------
+    def __init__(self, player, field):
+        """Constructor"""
+        assert isinstance(player, Player), 'player must be of tpye Player'
+        assert isinstance(field, Field), 'field must be of type Field'
+        self.player = player
+        self.field = field
+        
+########################################################################
+class Game:
+    """A GameInstance"""
+
+    #----------------------------------------------------------------------
+    def __init__(self, left, right, main):
+        """Constructor"""
+        assert isinstance(left, Side), 'left must be of type Side'
+        assert isinstance(right, Side), 'right must be of type Side'
+        assert isinstance(main, Field), 'main must be of type Field'
+        self.left = left
+        self.right = right
+        self.main = main
+        self.logging = False
+        self.curActor = None
+        
+    def gameover():
+        fl = self.left.player.team.battle_ready()
+        nl = sum([1 if (fl[k] == 'A') else 0 for k in fl.keys()])
+        fr = self.right.player.team.battle_ready()
+        nr = sum([1 if (fr[k] == 'A') else 0 for k in fr.keys()])
+        if nl == 0:
+            return (True, 'right')
+        elif nr == 0:
+            return (True, 'left')
+        else:
+            return(False, None)
+    
 def calcNature(Nature):
     d_Nature = {'HP': 1.0, 'Atk': 1.0, 'SpD': 1.0, 'Def': 1.0, 'Spe': 1.0, 
                 'SpA': 1.0}

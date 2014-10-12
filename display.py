@@ -8,6 +8,7 @@ import sys
 import time
 import random
 import battle
+import heapq
 
 screen = curses.initscr()
 screen.clear()
@@ -511,9 +512,11 @@ def build_team():
     build_menu()
     
 def battle_menu():
+    
     lines = ['Single', 'Double', 'Triple', 'Rotation', 'Exit']
     selection = standard_menu(lines)
-    if selection in range(4):
+    
+    if selection in range(4): # Currently accounting for all 4 battle types
         battle_opts = dict()
         battle_opts['# Poke'] = [6, 1, 2, 3, 4, 5]
         battle_opts['Items'] = [True, False]
@@ -521,6 +524,7 @@ def battle_menu():
         battle_opts['Level'] = [50, 100, 'As Is']
         battle_opts['Players'] = ['Human vs. CPU', 'CPU vs. CPU', 'Human vs. Human']
         battle_vals = user_options(battle_opts, 'Battle Options')
+        
         if battle_vals['Players'] == 'Human vs. CPU':
             p1_type = 'Human'
             p2_type = 'CPU'
@@ -536,8 +540,7 @@ def battle_menu():
             p2_type = 'Human'
             team1 = deepcopy(select_team('Player 1'))
             team2 = deepcopy(select_team('Player 2'))
-        else:
-            sys.exit(1234)
+        
         team1.init_battle(battle_vals)
         team2.init_battle(battle_vals)
         if int(battle_vals['# Poke']) == 6:
@@ -552,13 +555,19 @@ def battle_menu():
         team2_battle.set_All([team2.get_Member(i+1) for i in t2_members.keys() if t2_members[i] == 1])
         player_1 = pokeStructs.Player(p1_type, team1_battle)
         player_2 = pokeStructs.Player(p2_type, team2_battle)
-        #d_team(team1)
-        #d_team(team2)
-        battle_screen(player_1, player_2)
+        
+        left_field = pokeStructs.Field()
+        right_field = pokeStructs.Field()
+        main_field = pokeStructs.Field()
+        left = pokeStructs.Side(player_1, left_field)
+        right = pokeStructs.Side(player_2, right_field)
+        game = pokeStructs.Game(left, right, main_field)
+        
+        battle_screen(game)
     else:
         menu()
         
-def battle_screen(player_1, player_2):
+def battle_screen(game):
     def turn_setup():
         screen.nodelay(0)
         screen.clear()
@@ -715,27 +724,45 @@ def battle_screen(player_1, player_2):
             
             return q, choice
         
-        def cpu_choice(player):
-            moves = player.poke.Moves.Moves
+        def cpu_choice(user, receiver):
+            moves = user.poke.Moves.Moves
             m_Num = random.choice(range(1, 5))
             choice = ('move', m_Num)
+            
+            atker = user.poke
+            recvr = receiver.poke
+            max_dmg = 0
+            for m in range(1, 5):
+                try:
+                    dmg = battle.calc_Damage(atker, recvr, moves[m])
+                except:
+                    dmg = int(recvr.Stats['HP']*0.25)
+                if dmg > max_dmg:
+                    max_dmg = dmg
+                    choice = ('move', m)
             return choice
         
         q = False
         
+        game.curActor = 'left'
         if player_1.p_Type == 'Human':
             q, p1_choice = human_choice(player_1)
         elif player_1.p_Type == 'CPU':
-            p1_choice = cpu_choice(player_1)
+            p1_choice = cpu_choice(player_1, player_2)
             
         box2.clear()
         box2.box()
         box2.refresh()
         
+        game.curActor = 'right'
         if player_2.p_Type == 'Human':
             q, p2_choice = human_choice(player_2)
         elif player_2.p_Type == 'CPU':
-            p2_choice = cpu_choice(player_2)
+            p2_choice = cpu_choice(player_2, player_1)
+            
+        box2.clear()
+        box2.box()
+        box2.refresh()
             
         return p1_choice, p2_choice, q
         
@@ -947,7 +974,12 @@ def battle_screen(player_1, player_2):
     p2_box = curses.newwin(5, 26, 1, 2)
     box1_dims = box1.getmaxyx()
     box2_dims = box2.getmaxyx()
+    
+    player_1 = game.left.player
+    player_2 = game.right.player
+    game.curActor = 'left'
     player_1.poke = player_1.team.get_Member(pick_poke(player_1, False))
+    game.curActor = 'right'
     player_2.poke = player_2.team.get_Member(pick_poke(player_2, False))
     
     quit = False
@@ -981,6 +1013,26 @@ def battle_screen(player_1, player_2):
         turn_breakdown()
         
     battle_menu()
+    
+def tls_aStar(game, t_max):
+    game = deepcopy(game)
+    def astar():
+        return
+    
+    def heuristic(h_game):
+        l_team = game.left.player.team
+        r_team = game.right.player.team
+        l_sum = sum([l_team.get_Member(i).CurHP for i in l_team.pos_taken()])
+        r_sum = sum([r_team.get_Member(i).CurHP for i in r_team.pos_taken()])
+        if h_game.curActor == 'left':
+            return l_sum - r_sum
+        else:
+            return r_sum - l_sum
+    
+    def successors():
+        return
+    
+    return
         
 def select_team(player):
     screen.nodelay(0)
