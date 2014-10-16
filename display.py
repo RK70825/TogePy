@@ -400,6 +400,8 @@ def build_poke():
                     ev_vals[ev_op] = (ev_vals[ev_op] - 1)%maxval[option]
                 elif ev_vals[ev_op] != 0:
                     ev_vals[ev_op] = (ev_vals[ev_op] - 1)%maxval[option]
+                else:
+                    ev_vals[ev_op] = (510 - sum(ev_vals.values()))
             elif option == 5: #Special handling for IV
                 iv_vals[iv_op] = (iv_vals[iv_op] - 1)%maxval[option]
             else:
@@ -410,6 +412,8 @@ def build_poke():
                     ev_vals[ev_op] = (ev_vals[ev_op] + 1)%maxval[option]
                 elif sum(ev_vals.values()) == 510 and ev_vals[ev_op] == 255:
                     ev_vals[ev_op] = (ev_vals[ev_op] + 1)%maxval[option]
+                else:
+                    ev_vals[ev_op] = 0
             elif option == 5: #Special handling for IV
                 iv_vals[iv_op] = (iv_vals[iv_op] + 1)%maxval[option]
             else:
@@ -452,7 +456,8 @@ def build_team():
     strvals = dict(zip(range(len(lines)), ['']*len(lines)))
     maxval = dict(zip(range(len(lines)), [1]*len(lines)))
     #Set max unique values for each option
-    maxval[0:6] = [len(pk)]*6
+    for i in range(6):
+        maxval[i] = len(pk)
     while selection < 0:
         # Display Static Information
         graphics = [0]*len(lines)
@@ -710,10 +715,6 @@ def battle_screen(game):
                         choice = 'b'
                 
                 if choice == 'b':
-                    #box2.clear()
-                    #box2.box()
-                    #box2.refresh()
-                    #screen.refresh()
                     turn_setup()
                     continue
                 elif choice == 'q':
@@ -740,6 +741,9 @@ def battle_screen(game):
                 if dmg > max_dmg:
                     max_dmg = dmg
                     choice = ('move', m)
+                    
+            #choice = tls_aStar(game, 2)
+            
             return choice
         
         q = False
@@ -925,7 +929,7 @@ def battle_screen(game):
     def get_turn_order(choice_1, choice_2):
         priority_1 = battle.turn_priority(choice_1)
         priority_2 = battle.turn_priority(choice_2)
-        if priority_1 > priority_2:
+        if priority_1 < priority_2:
             return 1
         elif priority_2 < priority_1:
             return 2
@@ -935,7 +939,18 @@ def battle_screen(game):
     
     def execute_choice(choice, user, receiver):
         if choice[0] == 'switch':
+            old_name = user.poke.Name
             user.poke = user.team.get_Member(choice[1])
+            new_name = user.poke.Name
+            turn_setup()
+            box2.box()
+            box2.addstr(1, 1, old_name + ' return!')
+            box2.addstr(2, 1, new_name + ' go!')
+            box2.refresh()
+            screen.getch()
+            box2.clear()
+            box2.box()
+            box2.refresh()
         elif choice[0] == 'move':
             atker = user.poke
             recvr = receiver.poke
@@ -946,8 +961,11 @@ def battle_screen(game):
             except:
                 dmg = int(recvr.Stats['HP']*0.25)
             box2.addstr(1, 1, atker.Name + ' used ' + move.Name + '.')
-            box2.addstr(2, 1, recvr.Name + ' took ' + str(dmg) + ' damage.')
-            recvr.mod_HP(-1*dmg)
+            if battle.acc_check(move):
+                box2.addstr(2, 1, recvr.Name + ' took ' + str(dmg) + ' damage.')
+                recvr.mod_HP(-1*dmg)
+            else:
+                box2.addstr(2, 1, 'The attack missed!')
             box2.refresh()
             screen.getch()
             box2.clear()
@@ -1000,6 +1018,7 @@ def battle_screen(game):
             first_choice = p2_choice
             second_choice = p1_choice
         execute_choice(first_choice, p1, p2)
+        turn_setup()
         if game_over():
             break
         elif p2.poke.CurHP == 0:
@@ -1029,10 +1048,30 @@ def tls_aStar(game, t_max):
         else:
             return r_sum - l_sum
     
-    def successors():
-        return
+    def successors(s_game):
+        options = []
+        
+        if s_game.curActor == 'left':
+            team = s_game.left.player.team
+            poke = s_game.left.player.poke
+        elif s_game.curActor == 'right':
+            team = s_game.right.player.team
+            poke = s_game.right.player.poke
+            
+        # Add move choices
+        for m_k in poke.Moves.Moves.keys():
+            if poke.Moves.Moves[m_k].PP > 0:
+                options += [('move', m_k)]
+                
+        # Add switch choices
+        for p_k in team.pos_taken():
+            p = team.get_Member(p_k)
+            if (not p == poke) and (p.CurHP > 0):
+                options += [('switch', p_k)]
+        
+        return options 
     
-    return
+    return random.choice(successors(game))
         
 def select_team(player):
     screen.nodelay(0)
@@ -1272,9 +1311,9 @@ def user_options(d_settings, title='Select Options'):
             option = (option - 1)%len(lines)
         elif action == curses.KEY_DOWN:
             option = (option + 1)%len(lines)
-        elif action == curses.KEY_LEFT:
+        elif action == curses.KEY_LEFT and (not option == len(lines)-1):
             vals[option] = (vals[option]-1)%maxval[option]
-        elif action == curses.KEY_RIGHT:
+        elif action == curses.KEY_RIGHT and (not option == len(lines)-1):
             vals[option] = (vals[option]+1)%maxval[option]
         elif action == ord('\n') and option == (len(lines)-1):
             selection = option
@@ -1286,10 +1325,6 @@ def user_options(d_settings, title='Select Options'):
     screen.clear()
     d_uservals = dict(zip(lines[:-1], strvals))
     return d_uservals
-
-
-def scrolling_list(choices, screen, ymin, ymax, xmin, xmax):
-    return 'beh'
 
 if __name__ == '__main__':
     try:

@@ -6,9 +6,13 @@ This module handles the battle sequence in togePy
 
 import numpy
 from math import floor as fl
+import random
 
 def turn_priority(action):
-    return 0
+    if action[0] == 'switch':
+        return -1
+    else:
+        return 0
 
 def compare_speed(pk1, pk2):
     if pk1.Stats['Spe'] > pk2.Stats['Spe']:
@@ -34,4 +38,16 @@ def calc_Damage(attacker, defender, move):
         dmg *= 1.5
     dmg *= defender.DefType[move.Type]
     dmg = int(dmg)
+    
     return dmg
+
+def acc_check(move):
+    '''
+    Returns True if the move hits, False otherwise
+    '''
+    acc = move.Accuracy
+    if acc == None:
+        acc = 1.0
+    else:
+        acc /= 100.0
+    return acc > random.random()
