@@ -17,8 +17,10 @@ def turn_priority(action):
 def compare_speed(pk1, pk2):
     if pk1.Stats['Spe'] > pk2.Stats['Spe']:
         return 1
-    else:
+    elif pk2.Stats['Spe'] > pk1.Stats['Spe']:
         return 2
+    else:
+        return int(round(random.random()))
 
 def calc_Damage(attacker, defender, move):
     #todo: Include a check to determine if the move has a special damage formula, such as Seismic Toss or Dragon Rage
@@ -37,9 +39,12 @@ def calc_Damage(attacker, defender, move):
     if move.Type in t:
         dmg *= 1.5
     dmg *= defender.DefType[move.Type]
-    dmg = int(dmg)
     
-    return dmg
+    R = random.choice(range(16))
+    rand_mult = float(100-R)/100
+    dmg *= rand_mult
+    
+    return int(dmg)
 
 def acc_check(move):
     '''

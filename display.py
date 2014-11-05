@@ -533,18 +533,15 @@ def battle_menu():
         if battle_vals['Players'] == 'Human vs. CPU':
             p1_type = 'Human'
             p2_type = 'CPU'
-            team1 = deepcopy(select_team('Player 1'))
-            team2 = deepcopy(pkmn_test.random_Team())
         elif battle_vals['Players'] == 'CPU vs. CPU':
             p1_type = 'CPU'
             p2_type = 'CPU'
-            team1 = deepcopy(pkmn_test.random_Team())
-            team2 = deepcopy(pkmn_test.random_Team())
         elif battle_vals['Players'] == 'Human vs. Human':
             p1_type = 'Human'
             p2_type = 'Human'
-            team1 = deepcopy(select_team('Player 1'))
-            team2 = deepcopy(select_team('Player 2'))
+            
+        team1 = deepcopy(select_team('Player 1'))
+        team2 = deepcopy(select_team('Player 2'))
         
         team1.init_battle(battle_vals)
         team2.init_battle(battle_vals)
@@ -1078,7 +1075,8 @@ def select_team(player):
     screen.clear()
     selection = -1
     option = 0
-    teams = save.get_Files('TEAM')
+    rand_team = pkmn_test.random_Team()    
+    teams = save.get_Files('TEAM') + ['Random']
     lines = ['Team', 'Member_1', 'Member_2', 'Member_3', 'Member_4', 'Member_5', 'Member_6', 'Confirm']
     title = player + ' Team Selection'
     #Create dictionaries needed to support selections
@@ -1099,7 +1097,10 @@ def select_team(player):
         # Update string values for each option
         strvals[0] = teams[vals[0]]
         # Grab team
-        team = save.load_Team(strvals[0])
+        if strvals[0] == 'Random':
+            team = rand_team
+        else:
+            team = save.load_Team(strvals[0])
         # Update string values with poke
         for i in range(1, 7):
             if team.pos_open(i):
