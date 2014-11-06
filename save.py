@@ -6,16 +6,19 @@ This module saves user created data for togePy
 
 import os
 import cPickle as pickle
-import pokeStructs
+from datetime import datetime
 
 pokePath = os.path.join(os.getcwd(), 'POKE')
 teamPath = os.path.join(os.getcwd(), 'TEAM')
+gamePath = os.path.join(os.getcwd(), 'GAMES')
 
-# Create PKMN and TEAM folders if they don't exist
+# Create folders if they don't exist
 if not os.path.isdir(pokePath):
     os.mkdir(pokePath)
 if not os.path.isdir(teamPath):
     os.mkdir(teamPath)
+if not os.path.isdir(gamePath):
+    os.mkdir(gamePath)
     
 def get_Files(folder):
     if folder in ('POKE', 'TEAM'):
@@ -26,8 +29,6 @@ def get_Files(folder):
     
 def save_Poke(poke, saveName='', overwrite=False):
     #Allow to provide a savename and overwriting a pokemon
-    if not isinstance(poke, pokeStructs.Pokemon):
-        return
     if saveName == '':
         name = poke.Name
         i = 1
@@ -44,14 +45,12 @@ def save_Poke(poke, saveName='', overwrite=False):
         
 def load_Poke(fname):
     fPath = os.path.join(pokePath, fname)
-    with open(fPath, 'rb') as f:
+    with open(fPath, 'rU') as f:
         s = f.read().replace('\r\n', '\n')
         poke = pickle.loads(s)
     return poke
         
 def save_Team(team, saveName='', overwrite=False):
-    if not isinstance(team, pokeStructs.Team):
-        return
     if saveName == '':
         name = team.Name
         i = 1
@@ -72,3 +71,19 @@ def load_Team(fname):
         s = f.read().replace('\r\n', '\n')
         team = pickle.loads(s)
     return team
+
+def create_game_dir():
+    dir_name = 'Game ' + str(datetime.now()).replace(':','.').replace('.','_')
+    game_dir = os.path.join(gamePath, dir_name)
+    if not os.path.isdir(game_dir):
+        os.mkdir(game_dir)
+        # Should decide what to do for overwrite directories
+    return game_dir
+
+def save_Game(game):
+    save_dir = game.save_dir
+    fname = str(datetime.now()).replace(':','.').replace('.','_')
+    fPath = os.path.join(save_dir, fname)
+    with open(fPath, 'wb') as f:
+        pickle.dump(game, f)
+    return 

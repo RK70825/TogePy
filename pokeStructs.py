@@ -4,8 +4,8 @@ togePy.pokeStructs
 This module stores the data structures required for togePy
 """
 
-import Pokemon
 import numpy as np
+import save
 
 class Pokemon_dex:
     def __init__(self, Name, ID, Type, Tier, Abilities, BaseStats, Height, Weight):
@@ -286,7 +286,7 @@ class Game:
         self.logging = False
         self.curActor = None
         
-    def gameover():
+    def gameover(self):
         fl = self.left.player.team.battle_ready()
         nl = sum([1 if (fl[k] == 'A') else 0 for k in fl.keys()])
         fr = self.right.player.team.battle_ready()
@@ -297,6 +297,10 @@ class Game:
             return (True, 'left')
         else:
             return(False, None)
+        
+    def init_logging(self):
+        self.logging = True
+        self.save_dir = save.create_game_dir()
     
 def calcNature(Nature):
     d_Nature = {'HP': 1.0, 'Atk': 1.0, 'SpD': 1.0, 'Def': 1.0, 'Spe': 1.0, 
