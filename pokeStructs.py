@@ -6,6 +6,7 @@ This module stores the data structures required for togePy
 
 import numpy as np
 import save
+from copy import deepcopy
 
 class Pokemon_dex:
     def __init__(self, Name, ID, Type, Tier, Abilities, BaseStats, Height, Weight):
@@ -34,8 +35,6 @@ class Pokemon(Pokemon_dex):
         self.CurHP = self.Stats['HP']
         self.DefType = dict(calcDefType(self.Type))
         self.Moves = Moves
-        for k in self.Moves.Moves.keys():
-            self.Moves.Moves[k].init_Poke()
         self.Item = Item
         self.Status = None
         
@@ -59,11 +58,14 @@ class Pokemon(Pokemon_dex):
         self.CurHP = self.Stats['HP']
         self.Status = None
     
-    def init_battle(self):
-        self.b_Stats = self.Stats
-        self.Status = None
+    def init_battle(self, level):
+        self.b_Stats = deepcopy(self.Stats)
+        self.heal()
+        self.setLevel(level)
+        for k in self.Moves.Moves.keys():
+            self.Moves.Moves[k].init_Poke()
         
-    def update_satus(self, new_status):
+    def update_status(self, new_status):
         self.Status = new_status
         
     def mod_HP(self, delta_hp):
@@ -134,23 +136,10 @@ class Team:
     #----------------------------------------------------------------------
     def init_battle(self, battle_vals):
         """Initializes team for given battle"""
-        
-        def set_Levels(lvl):
-            for i in self.pos_taken():
-                poke = self.get_Member(i)
-                poke.setLevel(lvl)
-                self.set_Member(i, poke)
-            return
-        
-        def heal():
-            for i in self.pos_taken():
-                poke = self.get_Member(i)
-                poke.heal()
-                self.set_Member(i, poke)
-            return
-        
-        set_Levels(battle_vals['Level'])
-        heal()
+        for i in self.pos_taken():
+            poke = self.get_Member(i)
+            poke.init_battle(battle_vals['Level'])
+            
         return
     
     #----------------------------------------------------------------------
