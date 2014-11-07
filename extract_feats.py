@@ -160,9 +160,52 @@ class teamExtractor:
     
     #----------------------------------------------------------------------
     def extractTeamFeats(self):
-        
         return
     
     #----------------------------------------------------------------------
     def extract(self):
         self.extractPokeFeats()
+        self.extractTeamFeats()
+        return
+    
+class gameExtractor:
+    """Extracts features from a Game"""
+    
+    #----------------------------------------------------------------------
+    def __init__(self, game):
+        """gameExtractor Constructor"""
+        assert isinstance(game, pokeStructs.Game), 'Must be a game'
+        self.game = game
+        self.feats = dict()
+        self.battleFlag = True
+        if self.game.curActor is None:
+            self.first = 'left'
+        else:
+            self.first = self.game.curActor
+        
+    #----------------------------------------------------------------------
+    def getFeats(self):
+        return deepcopy(self.feats)
+    
+    #----------------------------------------------------------------------
+    def extractTeamFeats(self):
+        if self.first == 'left':
+            team1 = self.game.left.player.team
+            team2 = self.game.right.player.team
+        else:
+            team1 = self.game.right.player.team
+            team2 = self.game.left.player.team
+            
+        # Add team1's feats
+        tmext = teamExtractor(team1, True, '1')
+        tmext.extract()
+        self.feats.update(tmext.getFeats())
+        
+        # Add team2's feats
+        tmext = teamExtractor(team2, True, '2')
+        tmext.extract()
+        self.feats.update(tmext.getFeats())
+            
+    #----------------------------------------------------------------------
+    def extract(self):
+        self.extractTeamFeats()
