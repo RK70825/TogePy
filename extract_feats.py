@@ -4,7 +4,10 @@ togePy.extract_feats
 This module extracts features of various togePy data structures.
 """
 import pokeStructs
+import save
+import numpy as np
 from copy import deepcopy
+import os
 
 class pokeExtractor:
     """Extracts features from a Pokemon"""
@@ -205,7 +208,105 @@ class gameExtractor:
         tmext = teamExtractor(team2, True, '2')
         tmext.extract()
         self.feats.update(tmext.getFeats())
-            
+        return
+    
     #----------------------------------------------------------------------
     def extract(self):
         self.extractTeamFeats()
+        return
+        
+########################################################################
+class battleExtractor:
+    """Iteratively gets updates to extract battle info"""
+
+    #----------------------------------------------------------------------
+    def __init__(self):
+        """battleExtractor Constructor"""
+        self.left = None
+        self.right = None
+        self.columns = None
+        
+    #----------------------------------------------------------------------
+    def addFirstLine(self, raw_game):
+        game = deepcopy(raw_game)
+        game.curActor = 'left'
+        gmext = gameExtractor(game)
+        gmext.extract()
+        feats = gmext.getFeats()
+        items = feats.items()
+        items.sort()
+        vals = [v for (_, v) in items]
+        line = np.array(vals)
+        line = line.reshape((1, len(line)))
+        self.left = line
+        
+        game.curActor = 'right'
+        gmext = gameExtractor(game)
+        gmext.extract()
+        feats = gmext.getFeats()
+        items = feats.items()
+        items.sort()
+        vals = [v for (_, v) in items]
+        line = np.array(vals)
+        line = line.reshape((1, len(line)))
+        self.right = line
+        
+        self.columns = [k for (k, _) in items]
+        
+        return
+        
+    #----------------------------------------------------------------------
+    def addLine(self, raw_game):
+        assert isinstance(raw_game, pokeStructs.Game)
+        game = deepcopy(raw_game)
+        
+        if game.curActor is None:
+            self.addFirstLine(game)
+        else:
+            gmext = gameExtractor(game)
+            gmext.extract()
+            feats = gmext.getFeats()
+            items = feats.items()
+            items.sort()
+            vals = [v for (_, v) in items]
+            line = np.array(vals)
+            line = line.reshape((1, len(line)))
+            
+            if game.curActor == 'left':
+                self.left = np.concatenate((self.left, line), axis=0)
+            elif game.curActor == 'right':
+                self.right = np.concatenate((self.right, line), axis=0)
+            else:
+                assert False, 'Invalid Current Actor in Game'
+        
+        return
+    
+    #----------------------------------------------------------------------
+    def addWinners(self, winner):
+        l_rows = self.left.shape[0]
+        r_rows = self.right.shape[0]
+        l_dtype = self.left.dtype
+        r_dtype = self.right.dtype
+        
+        if winner == 'left':
+            l_col = np.ones((l_rows, 1), dtype=l_dtype)
+            self.left = np.concatenate((self.left, l_col), axis=1)
+            
+            r_col = np.zeros((r_rows, 1), dtype=r_dtype)
+            self.right = np.concatenate((self.right, r_col), axis=1)
+        elif winner == 'right':
+            l_col = np.zeros((r_rows, 1), dtype=r_dtype)
+            self.right = np.concatenate((self.right, l_col), axis=1)
+            
+            r_col = np.ones((l_rows, 1), dtype=l_dtype)
+            self.left = np.concatenate((self.left, r_col), axis=1)
+        else:
+            assert False, 'Invalid winner notation'
+            
+        return
+    
+    def writeData(self):
+        complete = np.concatenate((self.left, self.right), axis=0)
+        game_dir = save.create_game_dir()
+        fname = os.path.join(game_dir, 'results.txt')
+        np.savetxt(fname, complete, delimiter=',', fmt='%1.f')

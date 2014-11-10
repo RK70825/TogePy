@@ -1,11 +1,12 @@
 import battle
 import pokeStructs
 import pkmn_test
+import save
+import extract_feats
 import random
 import cPickle as pickle
 from copy import deepcopy
 import sys
-import save
 
 def init_game():
     # Fake Battle Values
@@ -148,7 +149,7 @@ def check_winner(player1, player2):
     else:
         return 1
 
-def auto(game, verbose):
+def auto(game, verbose, fext):
     # Prepare game
     player1 = game.left.player
     player2 = game.right.player
@@ -159,6 +160,9 @@ def auto(game, verbose):
     if verbose:
         print '%s sent out %s' %(player1.team.Name, pkstr(player1.poke))
         print '%s sent out %s\n' %(player2.team.Name, pkstr(player2.poke))
+    if fext:
+        btext = extract_feats.battleExtractor()
+        btext.addFirstLine(game)
     
     while True:
         # Get Player Choices and Order
@@ -174,60 +178,83 @@ def auto(game, verbose):
             p2 = player2
             first_choice = p1_choice
             second_choice = p2_choice
+            first_actor = 'left'
+            second_actor = 'right'
         else:
             p1 = player2
             p2 = player1
             first_choice = p2_choice
             second_choice = p1_choice
+            first_actor = 'right'
+            second_actor = 'left'
             
         # Execute Choices
         execute_choice(first_choice, p1, p2, verbose)
+        game.curActor = first_actor
         if game.logging:
-            save.save_Game(game)        
+            save.save_Game(game)
+        if fext:
+            btext.addLine(game)
         if check_gameover(p1, p2):
             break
         elif p2.poke.CurHP == 0:
             p2.poke = p2.team.get_Member(pick_poke(p2))
+            game.curActor = second_actor
             if verbose:
                 print '%s sent out %s' %(p2.team.Name, pkstr(p2.poke))
             if game.logging:
                 save.save_Game(game)
+            if fext:
+                btext.addLine(game)
         else:
             execute_choice(second_choice, p2, p1, verbose)
+            game.curActor = second_actor
         if game.logging:
             save.save_Game(game)
+        if fext:
+            btext.addLine(game)
         
         if check_gameover(p1, p2):
             break
         elif p1.poke.CurHP == 0:
             p1.poke = p1.team.get_Member(pick_poke(p1))
+            game.curActor = first_actor
             if verbose:
                 print '%s sent out %s' %(p1.team.Name, pkstr(p1.poke))
             if game.logging:
                 save.save_Game(game)
+            if fext:
+                btext.addLine(game)
                 
         # Separate Turns
         if verbose:
             print ''
-        
+    
     if check_winner(player1, player2) == 1:
         winner = player1.team.Name
+        fextwin = 'left'
     else:
         winner = player2.team.Name
-        
+        fextwin = 'right'
+    
+            
     if verbose:
         win_string = '###%s has won the game!###' %(winner)
         print '\n'+'#'*len(win_string)
         print win_string
         print '#'*len(win_string)
+    if fext:
+        btext.addLine(game)
+        btext.addWinners(fextwin)
+        btext.writeData()
         
     return
 
-def main(verbose=False, logging=False):
+def main(verbose=False, logging=False, fext=False):
     game = init_game()
     if logging:
         game.init_logging()
-    auto(game, verbose)
+    auto(game, verbose, fext)
     return
 
 if __name__ == '__main__':
@@ -235,5 +262,7 @@ if __name__ == '__main__':
         main(bool(int(sys.argv[1])))
     elif len(sys.argv) == 3:
         main(bool(int(sys.argv[1])), bool(int(sys.argv[2])))
+    elif len(sys.argv) == 4:
+        main(bool(int(sys.argv[1])), bool(int(sys.argv[2])), bool(int(sys.argv[3])))
     else:
         main()
